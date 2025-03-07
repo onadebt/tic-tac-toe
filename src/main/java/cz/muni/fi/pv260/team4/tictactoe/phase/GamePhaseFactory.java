@@ -1,0 +1,29 @@
+package cz.muni.fi.pv260.team4.tictactoe.phase;
+
+import cz.muni.fi.pv260.team4.tictactoe.entity.MatchConfiguration;
+import cz.muni.fi.pv260.team4.tictactoe.interfaces.IOProvider;
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
+public class GamePhaseFactory {
+    private final IOProvider ioProvider;
+
+    /**
+     * Construct setup phase.
+     *
+     * @return setup game phase
+     */
+    public GamePhase getSetupPhase() {
+        return new SetupPhase(ioProvider, this);
+    }
+
+    /**
+     * Construct match phase.
+     *
+     * @param configuration Configuration of game match
+     * @return match game phase
+     */
+    public GamePhase getMatchPhase(final MatchConfiguration configuration) {
+        return new MatchPhase(this, ioProvider, configuration);
+    }
+}

@@ -1,0 +1,25 @@
+stages:
+  - build
+  - test
+
+build-gradle:
+  stage: build
+  tags:
+    - shared-fi
+  image: gradle:jdk21
+
+  script:
+    - ./gradlew build
+
+test-gradle:
+  stage: test
+  tags:
+    - shared-fi
+  image: gradle:jdk21
+
+  script:
+    - ./gradlew test
+
+  artifacts:
+    reports:
+      junit: '**/build/test-results/**/TEST-*.xml'
