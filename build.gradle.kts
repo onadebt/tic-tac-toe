@@ -39,3 +39,7 @@ tasks.jar {
 rewrite {
 
 }
+
+checkstyle {
+    toolVersion = "10.21.4"
+}

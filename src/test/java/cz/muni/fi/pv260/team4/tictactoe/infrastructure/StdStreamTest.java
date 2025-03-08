@@ -11,6 +11,9 @@ public class StdStreamTest {
     private PrintStream originalStdOut;
     private PrintStream originalStdErr;
 
+    /**
+     * Save original standard streams.
+     */
     @BeforeEach
     void setUp() {
         originalStdIn = System.in;
@@ -18,6 +21,9 @@ public class StdStreamTest {
         originalStdErr = System.err;
     }
 
+    /**
+     * Restore original standard streams.
+     */
     @AfterEach
     void tearDown() {
         System.setIn(originalStdIn);
