@@ -2,11 +2,12 @@ package cz.muni.fi.pv260.team4.tictactoe.infrastructure;
 
 import cz.muni.fi.pv260.team4.tictactoe.interfaces.IOProvider;
 
+import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 import java.util.function.Function;
 
 public final class TerminalIOProvider implements IOProvider {
-    private final Scanner scanner = new Scanner(System.in);
+    private final Scanner scanner = new Scanner(System.in, StandardCharsets.UTF_8);
 
     @Override
     public long readLong(
