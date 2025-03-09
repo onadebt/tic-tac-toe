@@ -1,10 +1,11 @@
 package cz.muni.fi.pv260.team4.tictactoe.infrastructure;
 
 import cz.muni.fi.pv260.team4.tictactoe.interfaces.IOProvider;
+import cz.muni.fi.pv260.team4.tictactoe.util.InputValidator;
 
 import java.nio.charset.StandardCharsets;
+import java.util.Optional;
 import java.util.Scanner;
-import java.util.function.Function;
 
 public final class TerminalIOProvider implements IOProvider {
     private final Scanner scanner = new Scanner(System.in, StandardCharsets.UTF_8);
@@ -12,15 +13,15 @@ public final class TerminalIOProvider implements IOProvider {
     @Override
     public long readLong(
             final String prompt,
-            final Function<Long, String> validator
+            final InputValidator<Long> validator
     ) {
         return readLong(prompt, null, validator);
     }
 
     @Override
-    public long readLong(final String prompt, final Long defaultValue, final Function<Long, String> validator) {
+    public long readLong(final String prompt, final Long defaultValue, final InputValidator<Long> validator) {
         long result;
-        String errorMessage;
+        Optional<String> errorMessage;
 
         do {
             var userInput = promptAndReadLine(prompt, defaultValue);
@@ -36,29 +37,29 @@ public final class TerminalIOProvider implements IOProvider {
                 continue;
             }
 
-            errorMessage = validator.apply(result);
-            if (errorMessage == null) {
+            errorMessage = validator.validate(result);
+            if (errorMessage.isEmpty()) {
                 return result;
             }
-            System.err.println(errorMessage);
+            System.err.println(errorMessage.get());
         } while (true);
     }
 
     @Override
     public String readString(
             final String prompt,
-            final Function<String, String> validator
+            final InputValidator<String> validator
     ) {
-        String errorMessage;
+        Optional<String> errorMessage;
 
         do {
             var userInput = promptAndReadLine(prompt, null);
 
-            errorMessage = validator.apply(userInput);
-            if (errorMessage == null) {
+            errorMessage = validator.validate(userInput);
+            if (errorMessage.isEmpty()) {
                 return userInput;
             }
-            System.err.println(errorMessage);
+            System.err.println(errorMessage.get());
         } while (true);
     }
 

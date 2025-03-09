@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -20,7 +21,7 @@ class TerminalIOProviderTest extends StdStreamTest {
         System.setOut(new PrintStream(output));
 
         var ioProvider = new TerminalIOProvider();
-        var readValue = ioProvider.readLong("test", (_1) -> null);
+        var readValue = ioProvider.readLong("test", (_1) -> Optional.empty());
 
         assertEquals(5L, readValue);
         assertTrue(output.toString().contains("test"));
@@ -35,7 +36,7 @@ class TerminalIOProviderTest extends StdStreamTest {
         System.setOut(new PrintStream(output));
 
         var ioProvider = new TerminalIOProvider();
-        var readValue = ioProvider.readLong("test", 69L, (_1) -> null);
+        var readValue = ioProvider.readLong("test", 69L, (_1) -> Optional.empty());
 
         assertEquals(42L, readValue);
         assertTrue(output.toString().contains("test"));
@@ -51,7 +52,7 @@ class TerminalIOProviderTest extends StdStreamTest {
         System.setOut(new PrintStream(output));
 
         var ioProvider = new TerminalIOProvider();
-        var readValue = ioProvider.readLong("test", 69L, (_1) -> null);
+        var readValue = ioProvider.readLong("test", 69L, (_1) -> Optional.empty());
 
         assertEquals(69L, readValue);
         assertTrue(output.toString().contains("test"));
@@ -70,7 +71,7 @@ class TerminalIOProviderTest extends StdStreamTest {
         System.setErr(new PrintStream(error));
 
         var ioProvider = new TerminalIOProvider();
-        var readValue = ioProvider.readLong("test", 69L, (_1) -> null);
+        var readValue = ioProvider.readLong("test", 69L, (_1) -> Optional.empty());
 
         assertEquals(1L, readValue);
         assertTrue(output.toString().contains("test"));
@@ -91,9 +92,9 @@ class TerminalIOProviderTest extends StdStreamTest {
         var ioProvider = new TerminalIOProvider();
         var readValue = ioProvider.readLong("test", 69L, (n) -> {
             if (n == 1L) {
-                return "bad";
+                return Optional.of("bad");
             }
-            return null;
+            return Optional.empty();
         });
 
         assertEquals(2L, readValue);
@@ -110,7 +111,7 @@ class TerminalIOProviderTest extends StdStreamTest {
         System.setOut(new PrintStream(output));
 
         var ioProvider = new TerminalIOProvider();
-        var readValue = ioProvider.readString("test", (_1) -> null);
+        var readValue = ioProvider.readString("test", (_1) -> Optional.empty());
 
         assertEquals("abc", readValue);
         assertTrue(output.toString().contains("test"));
@@ -130,9 +131,9 @@ class TerminalIOProviderTest extends StdStreamTest {
         var ioProvider = new TerminalIOProvider();
         var readValue = ioProvider.readString("test", (s) -> {
             if (s.equals("a")) {
-                return "bad";
+                return Optional.of("bad");
             }
-            return null;
+            return Optional.empty();
         });
 
         assertEquals("b", readValue);

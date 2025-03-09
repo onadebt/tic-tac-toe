@@ -5,6 +5,8 @@ import cz.muni.fi.pv260.team4.tictactoe.entity.MatchConfiguration;
 import cz.muni.fi.pv260.team4.tictactoe.interfaces.IOProvider;
 import lombok.AllArgsConstructor;
 
+import java.util.Optional;
+
 @AllArgsConstructor
 public final class SetupPhase implements GamePhase {
     private final IOProvider ioProvider;
@@ -17,10 +19,10 @@ public final class SetupPhase implements GamePhase {
                 Const.MINIMAL_PLAYER_COUNT,
                 (numOfPlayers) -> {
                     if (numOfPlayers < Const.MINIMAL_PLAYER_COUNT) {
-                        return "There have to be at least 2 players";
+                        return Optional.of("There have to be at least 2 players");
                     }
 
-                    return null;
+                    return Optional.empty();
                 }
         );
 
@@ -29,10 +31,10 @@ public final class SetupPhase implements GamePhase {
                 Const.MINIMAL_BOARD_WIDTH,
                 (widthOfTheBoard) -> {
                     if (widthOfTheBoard < Const.MINIMAL_BOARD_WIDTH) {
-                        return "Minimum width of the board is 3";
+                        return Optional.of("Minimum width of the board is 3");
                     }
 
-                    return null;
+                    return Optional.empty();
                 }
         );
 
@@ -41,10 +43,10 @@ public final class SetupPhase implements GamePhase {
                 Const.MINIMAL_BOARD_HEIGHT,
                 (heightOfTheBoard) -> {
                     if (heightOfTheBoard < Const.MINIMAL_BOARD_HEIGHT) {
-                        return "Minimum height of the board is 3";
+                        return Optional.of("Minimum height of the board is 3");
                     }
 
-                    return null;
+                    return Optional.empty();
                 }
         );
 
@@ -53,10 +55,10 @@ public final class SetupPhase implements GamePhase {
                 Const.MINIMAL_LENGTH_OF_WINNING_SEQUENCE,
                 (lengthOfTheWinningSequence) -> {
                     if (lengthOfTheWinningSequence < Const.MINIMAL_LENGTH_OF_WINNING_SEQUENCE) {
-                        return "Length of the winning sequence has to be at least 3";
+                        return Optional.of("Length of the winning sequence has to be at least 3");
                     }
 
-                    return null;
+                    return Optional.empty();
                 }
         );
 
