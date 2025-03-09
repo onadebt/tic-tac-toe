@@ -3,6 +3,7 @@ plugins {
     kotlin("jvm")
     checkstyle
     id("org.openrewrite.rewrite") version("7.1.7")
+    id("com.github.spotbugs") version "6.1.7"
 }
 
 group = "cz.muni.fi.pv260.team4.tictactoe"
@@ -21,7 +22,8 @@ dependencies {
 
     testImplementation(platform("org.junit:junit-bom:5.10.0"))
     testImplementation("org.junit.jupiter:junit-jupiter")
-    implementation(kotlin("stdlib-jdk8"))
+
+    spotbugsPlugins("com.h3xstream.findsecbugs:findsecbugs-plugin:1.13.0")
 }
 
 tasks.test {
@@ -42,4 +44,9 @@ rewrite {
 
 checkstyle {
     toolVersion = "10.21.4"
+}
+
+spotbugs {
+    toolVersion = "4.9.2"
+    excludeFilter = File("${project.rootDir}/config/spotbugs/spotbugs-exclude.xml")
 }
