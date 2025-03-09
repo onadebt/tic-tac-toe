@@ -2,12 +2,13 @@ package cz.muni.fi.pv260.team4.tictactoe.board;
 
 import cz.muni.fi.pv260.team4.tictactoe.element.ElementSupplier;
 import cz.muni.fi.pv260.team4.tictactoe.entity.MatchConfiguration;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 import java.util.Arrays;
 
-
-public class ArrayBoard implements Board {
+@AllArgsConstructor
+public final class ArrayBoard implements Board {
 
     private final ElementSupplier elementSupplier;
 
@@ -16,15 +17,13 @@ public class ArrayBoard implements Board {
 
     private final Character[][] grid;
 
-    public ArrayBoard(ElementSupplier elementSupplier, MatchConfiguration matchConfiguration, Character[][] grid) {
-        this.elementSupplier = elementSupplier;
-        this.matchConfiguration = matchConfiguration;
-        this.grid = grid;
-    }
-
-    public static Character[][] getEmptyGrid(MatchConfiguration matchConfiguration, ElementSupplier elementSupplier) {
-        Character[][] grid = new Character[(int) matchConfiguration.boardHeight()][(int) matchConfiguration.boardWidth()];
-        for(int i = 0; i < matchConfiguration.boardHeight(); i++) {
+    public static Character[][] getEmptyGrid(
+            final MatchConfiguration matchConfiguration,
+            final ElementSupplier elementSupplier) {
+        Character[][] grid = new Character
+                [(int) matchConfiguration.boardHeight()]
+                [(int) matchConfiguration.boardWidth()];
+        for (int i = 0; i < matchConfiguration.boardHeight(); i++) {
             Arrays.fill(grid[i], elementSupplier.getEmptyElement());
         }
 
@@ -32,12 +31,12 @@ public class ArrayBoard implements Board {
     }
 
     @Override
-    public Character getCell(int row, int column) {
+    public Character getCell(final int row, final int column) {
         return grid[row][column];
     }
 
     @Override
-    public void setCell(int row, int column, Character cell) {
+    public void setCell(final int row, final int column, final Character cell) {
         grid[row][column] = cell;
     }
 
