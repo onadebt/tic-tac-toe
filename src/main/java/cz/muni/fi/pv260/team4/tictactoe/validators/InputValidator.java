@@ -1,4 +1,4 @@
-package cz.muni.fi.pv260.team4.tictactoe.util;
+package cz.muni.fi.pv260.team4.tictactoe.validators;
 
 import java.util.Optional;
 

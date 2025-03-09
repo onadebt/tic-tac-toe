@@ -1,7 +1,7 @@
 package cz.muni.fi.pv260.team4.tictactoe.infrastructure;
 
 import cz.muni.fi.pv260.team4.tictactoe.interfaces.IOProvider;
-import cz.muni.fi.pv260.team4.tictactoe.util.InputValidator;
+import cz.muni.fi.pv260.team4.tictactoe.validators.InputValidator;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Optional;

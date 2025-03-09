@@ -1,6 +1,6 @@
 package cz.muni.fi.pv260.team4.tictactoe.interfaces;
 
-import cz.muni.fi.pv260.team4.tictactoe.util.InputValidator;
+import cz.muni.fi.pv260.team4.tictactoe.validators.InputValidator;
 
 public interface IOProvider {
     /**

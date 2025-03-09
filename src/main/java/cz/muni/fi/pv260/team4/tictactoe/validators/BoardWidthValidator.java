@@ -1,7 +1,6 @@
 package cz.muni.fi.pv260.team4.tictactoe.validators;
 
 import cz.muni.fi.pv260.team4.tictactoe.Const;
-import cz.muni.fi.pv260.team4.tictactoe.util.InputValidator;
 
 import java.util.Optional;
 
