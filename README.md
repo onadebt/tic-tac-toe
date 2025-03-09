@@ -17,7 +17,7 @@ Quick start
 To run the TicTacToe game run the following command:
 
 ```shell
-./gradlew run 
+./gradlew run -q --console=plain
 ```
 
 Run tests

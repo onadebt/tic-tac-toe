@@ -2,8 +2,9 @@ plugins {
     id("java")
     kotlin("jvm")
     checkstyle
-    id("org.openrewrite.rewrite") version("7.1.7")
+    id("org.openrewrite.rewrite") version ("7.1.7")
     id("com.github.spotbugs") version "6.1.7"
+    id("application")
 }
 
 group = "cz.muni.fi.pv260.team4.tictactoe"
@@ -36,6 +37,14 @@ tasks.jar {
     }
     from(configurations.runtimeClasspath.get().map(::zipTree))
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+
+application {
+    mainClass = "cz.muni.fi.pv260.team4.tictactoe.Main"
+}
+
+tasks.named<JavaExec>("run") {
+    standardInput = System.`in`
 }
 
 rewrite {
