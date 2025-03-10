@@ -32,6 +32,6 @@ public class GamePhaseFactory {
                 this,
                 ioProvider,
                 configuration,
-                boardFactory.createEmptyBoard(configuration, new AlphabeticElementSupplier<>()));
+                boardFactory.createEmptyBoard(configuration, new AlphabeticElementSupplier()));
     }
 }
