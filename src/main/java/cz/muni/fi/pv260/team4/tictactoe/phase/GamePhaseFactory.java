@@ -1,5 +1,7 @@
 package cz.muni.fi.pv260.team4.tictactoe.phase;
 
+import cz.muni.fi.pv260.team4.tictactoe.board.BoardFactory;
+import cz.muni.fi.pv260.team4.tictactoe.element.AlphabeticElementSupplier;
 import cz.muni.fi.pv260.team4.tictactoe.entity.MatchConfiguration;
 import cz.muni.fi.pv260.team4.tictactoe.interfaces.IOProvider;
 import lombok.AllArgsConstructor;
@@ -7,6 +9,8 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class GamePhaseFactory {
     private final IOProvider ioProvider;
+
+    private final BoardFactory boardFactory = new BoardFactory();
 
     /**
      * Construct setup phase.
@@ -24,6 +28,10 @@ public class GamePhaseFactory {
      * @return match game phase
      */
     public GamePhase getMatchPhase(final MatchConfiguration configuration) {
-        return new MatchPhase(this, ioProvider, configuration);
+        return new MatchPhase(
+                this,
+                ioProvider,
+                configuration,
+                boardFactory.createEmptyBoard(configuration, new AlphabeticElementSupplier<>()));
     }
 }
