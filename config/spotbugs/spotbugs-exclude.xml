@@ -25,4 +25,8 @@
         <Bug pattern="VA_FORMAT_STRING_USES_NEWLINE" />
         <Class name="~.*Test$?.*" />
     </Match>
+    <Match>
+        <Class name="~.*Test"/>
+        <Bug pattern="DMI_RANDOM_USED_ONLY_ONCE"/>
+    </Match>
 </FindBugsFilter>

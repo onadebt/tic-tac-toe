@@ -1,6 +1,7 @@
 package cz.muni.fi.pv260.team4.tictactoe.phase;
 
 import cz.muni.fi.pv260.team4.tictactoe.Const;
+import cz.muni.fi.pv260.team4.tictactoe.element.AlphabeticElementSupplier;
 import cz.muni.fi.pv260.team4.tictactoe.entity.MatchConfiguration;
 import cz.muni.fi.pv260.team4.tictactoe.interfaces.IOProvider;
 import cz.muni.fi.pv260.team4.tictactoe.validators.BoardHeightValidator;
@@ -46,7 +47,7 @@ public final class SetupPhase implements GamePhase {
                         boardWidth,
                         boardHeight,
                         lengthOfWinningSequence
-                )
+                ), new AlphabeticElementSupplier()
         );
     }
 }
