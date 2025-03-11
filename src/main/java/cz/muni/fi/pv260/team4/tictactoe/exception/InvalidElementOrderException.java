@@ -10,7 +10,7 @@ public class InvalidElementOrderException extends RuntimeException {
      * @param order The invalid order that was provided.
      * @param maxOrder The maximum allowed order.
      */
-    public InvalidElementOrderException(int order, int maxOrder) {
+    public InvalidElementOrderException(final int order, final int maxOrder) {
         super("Invalid element order: %d. Valid range is 0 to %d.".formatted(order, maxOrder));
     }
 }

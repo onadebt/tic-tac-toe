@@ -34,7 +34,7 @@ public final class AlphabeticElementSupplier implements ElementSupplier {
      */
     @Override
     public Character getElement(final int order) {
-        if (order < 0 || order >= getMaxOrder()) {
+        if (order < 0 || order > getMaxOrder()) {
             throw new InvalidElementOrderException(order, getMaxOrder());
         }
         return (char) ('a' + order);

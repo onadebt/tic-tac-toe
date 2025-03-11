@@ -3,7 +3,9 @@ package cz.muni.fi.pv260.team4.tictactoe.element;
 import cz.muni.fi.pv260.team4.tictactoe.exception.InvalidElementOrderException;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class AlphabeticElementSupplierTest {
 
