@@ -6,19 +6,29 @@ public interface Board {
 
     /**
      * Obtains the character at a given position from the board.
+     * <p>
+     * If the specified row or column is out of bounds, an exception is thrown.
+     * </p>
      *
      * @param row the row number of the cell
      * @param column the column number of the cell
      * @return the character at the specified position on the board
+     * @throws cz.muni.fi.pv260.team4.tictactoe.exception.BoardPositionOutOfBoundsException
+     * if the row or column is outside the valid range
      */
     Character getCell(int row, int column);
 
     /**
      * Sets a character at a given position on the board.
+     * <p>
+     * If the specified row or column is out of bounds, an exception is thrown.
+     * </p>
      *
      * @param row the row number of the cell
      * @param column the column number of the cell
      * @param cell the character to be set at the specified position
+     * @throws cz.muni.fi.pv260.team4.tictactoe.exception.BoardPositionOutOfBoundsException
+     * if the row or column is outside the valid range
      */
     void setCell(int row, int column, Character cell);
 

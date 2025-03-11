@@ -2,6 +2,7 @@ package cz.muni.fi.pv260.team4.tictactoe.board;
 
 import cz.muni.fi.pv260.team4.tictactoe.element.ElementSupplier;
 import cz.muni.fi.pv260.team4.tictactoe.entity.MatchConfiguration;
+import cz.muni.fi.pv260.team4.tictactoe.exception.BoardPositionOutOfBoundsException;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -38,12 +39,28 @@ public final class ArrayBoard implements Board {
 
     @Override
     public Character getCell(final int row, final int column) {
+        validateBounds(row, column);
         return grid[row][column];
     }
 
     @Override
     public void setCell(final int row, final int column, final Character cell) {
+        validateBounds(row, column);
         grid[row][column] = cell;
+    }
+
+    /**
+     * Validates whether the given row and column indices are within the board's bounds.
+     *
+     * @param row    The row index to check.
+     * @param column The column index to check.
+     * @throws BoardPositionOutOfBoundsException if the row or column index is out of bounds.
+     */
+    private void validateBounds(final int row, final int column) {
+        if (row < 0 || row >= getMatchConfiguration().boardHeight()
+                || column < 0 || column >= getMatchConfiguration().boardWidth()) {
+            throw new BoardPositionOutOfBoundsException(row, column, grid.length, grid[0].length);
+        }
     }
 
     @Override

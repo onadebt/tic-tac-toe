@@ -3,13 +3,16 @@ package cz.muni.fi.pv260.team4.tictactoe.board;
 import cz.muni.fi.pv260.team4.tictactoe.element.AlphabeticElementSupplier;
 import cz.muni.fi.pv260.team4.tictactoe.element.ElementSupplier;
 import cz.muni.fi.pv260.team4.tictactoe.entity.MatchConfiguration;
+import cz.muni.fi.pv260.team4.tictactoe.exception.BoardPositionOutOfBoundsException;
 import org.junit.jupiter.api.Test;
 
 import java.security.SecureRandom;
 import java.util.Random;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class ArrayBoardTest {
@@ -126,5 +129,46 @@ class ArrayBoardTest {
         // Assert: Copied board contains new modifications
         assertEquals('X', copiedBoard.getCell(3, 3));
         assertEquals('O', copiedBoard.getCell(4, 4));
+    }
+
+
+    @Test
+    public void shouldNotThrowExceptionWhenAccessingValidPosition() {
+        MatchConfiguration matchConfiguration = new MatchConfiguration(5, 5, 7, 3);
+        ElementSupplier elementSupplier = getDummyElementSupplier();
+        Character[][] grid = ArrayBoard.getEmptyGrid(matchConfiguration, elementSupplier);
+        Board board = new ArrayBoard(elementSupplier, matchConfiguration, grid);
+
+        // Iterate through all valid positions and ensure no exception is thrown
+        for (int row = 0; row < matchConfiguration.boardHeight(); row++) {
+            for (int col = 0; col < matchConfiguration.boardWidth(); col++) {
+                int finalRow = row;
+                int finalCol = col;
+                assertDoesNotThrow(() -> board.getCell(finalRow, finalCol));
+                assertDoesNotThrow(() -> board.setCell(finalRow, finalCol, elementSupplier.getElement(0)));
+            }
+        }
+    }
+
+    @Test
+    public void shouldThrowExceptionWhenAccessingOutOfBoundsPosition() {
+        MatchConfiguration matchConfiguration = new MatchConfiguration(5, 5, 7, 3);
+        ElementSupplier elementSupplier = getDummyElementSupplier();
+        Character[][] grid = ArrayBoard.getEmptyGrid(matchConfiguration, elementSupplier);
+        Board board = new ArrayBoard(elementSupplier, matchConfiguration, grid);
+
+        // Out-of-bounds test cases for getCell()
+        assertThrows(BoardPositionOutOfBoundsException.class, () -> board.getCell(-1, -1));
+        assertThrows(BoardPositionOutOfBoundsException.class, () -> board.getCell(1, 5));
+        assertThrows(BoardPositionOutOfBoundsException.class, () -> board.getCell(1, 6));
+        assertThrows(BoardPositionOutOfBoundsException.class, () -> board.getCell(7, 5));
+        assertThrows(BoardPositionOutOfBoundsException.class, () -> board.getCell(8, 5));
+
+        // Out-of-bounds test cases for setCell()
+        assertThrows(BoardPositionOutOfBoundsException.class, () -> board.setCell(-1, -1, 'X'));
+        assertThrows(BoardPositionOutOfBoundsException.class, () -> board.setCell(1, 5, 'O'));
+        assertThrows(BoardPositionOutOfBoundsException.class, () -> board.setCell(1, 6, 'O'));
+        assertThrows(BoardPositionOutOfBoundsException.class, () -> board.setCell(7, 5, 'X'));
+        assertThrows(BoardPositionOutOfBoundsException.class, () -> board.setCell(8, 5, 'O'));
     }
 }
