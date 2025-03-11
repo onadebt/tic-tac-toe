@@ -25,7 +25,7 @@ class ArrayBoardTest {
     }
 
     @Test
-    public void testEmptyGrid() {
+    public void shouldCreateEmptyGrid() {
         // Test: Verify that a newly created board is completely empty
 
         final MatchConfiguration matchConfiguration = getDummyMatchConfiguration();
@@ -46,7 +46,7 @@ class ArrayBoardTest {
     }
 
     @Test
-    public void testSingleInsertAndGet() {
+    public void shouldInsertAndRetrieveSingleElement() {
         // Test: Insert a single element into the board and verify retrieval
 
         final MatchConfiguration matchConfiguration = getDummyMatchConfiguration();
@@ -68,7 +68,7 @@ class ArrayBoardTest {
     }
 
     @Test
-    public void testRandomInsertAndGet() {
+    public void shouldInsertAndRetrieveSeveralRandomElements() {
         // Test: Randomly insert multiple elements into the board and verify correctness
 
         final MatchConfiguration matchConfiguration = new MatchConfiguration(10, 12, 7, 3);
@@ -99,7 +99,7 @@ class ArrayBoardTest {
 
 
     @Test
-    public void testCreateCopyDoesNotAffectOriginalBoard() {
+    public void shouldCreateModifiableCopyWithoutAffectingOriginalBoard() {
         // Arrange: Create initial board and insert some elements
         MatchConfiguration matchConfiguration = new MatchConfiguration(5, 5, 5, 3);
         ElementSupplier elementSupplier = getDummyElementSupplier();

@@ -8,16 +8,15 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class AlphabeticElementSupplierTest {
-
     @Test
-    public void testEmptyElement() {
+    public void shouldReturnEmptyElement() {
         AlphabeticElementSupplier supplier = new AlphabeticElementSupplier();
         assertNotNull(supplier.getEmptyElement());
         assertEquals(' ', supplier.getEmptyElement());
     }
 
     @Test
-    public void testFewElements() {
+    public void shouldReturnCorrectFirstFewElements() {
         AlphabeticElementSupplier supplier = new AlphabeticElementSupplier();
         assertEquals('a', supplier.getElement(0));
         assertEquals('b', supplier.getElement(1));
@@ -26,15 +25,16 @@ class AlphabeticElementSupplierTest {
     }
 
     @Test
-    public void testMaxElement() {
+    public void shouldReturnLastElementForMaxOrder() {
         AlphabeticElementSupplier supplier = new AlphabeticElementSupplier();
         assertEquals('z', supplier.getElement(supplier.getMaxOrder()));
     }
 
     @Test
-    public void testInvalidElementOrder() {
+    public void shouldThrowExceptionForInvalidElementOrder() {
         AlphabeticElementSupplier supplier = new AlphabeticElementSupplier();
         assertThrows(InvalidElementOrderException.class, () -> supplier.getElement(-1));
         assertThrows(InvalidElementOrderException.class, () -> supplier.getElement(supplier.getMaxOrder() + 1));
     }
+
 }
