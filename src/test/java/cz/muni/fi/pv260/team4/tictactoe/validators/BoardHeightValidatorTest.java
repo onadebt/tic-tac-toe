@@ -13,10 +13,21 @@ class BoardHeightValidatorTest {
         assertTrue(validator.validate(Const.MINIMAL_BOARD_HEIGHT).isEmpty());
     }
 
-
     @Test
     void shouldRejectBelowMinimalBoardHeight() {
         BoardHeightValidator validator = new BoardHeightValidator();
         assertTrue(validator.validate(Const.MINIMAL_BOARD_HEIGHT - 1).isPresent());
+    }
+
+    @Test
+    void shouldRejectAboveMaximalBoardHeight() {
+        BoardHeightValidator validator = new BoardHeightValidator();
+        assertTrue(validator.validate(Const.MAXIMAL_BOARD_HEIGHT + 1).isPresent());
+    }
+
+    @Test
+    void shouldAllowBelowMaximalBoardHeight() {
+        BoardHeightValidator validator = new BoardHeightValidator();
+        assertTrue(validator.validate(Const.MAXIMAL_BOARD_HEIGHT - 1).isEmpty());
     }
 }
