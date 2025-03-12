@@ -2,6 +2,7 @@ package cz.muni.fi.pv260.team4.tictactoe.phase;
 
 import cz.muni.fi.pv260.team4.tictactoe.Const;
 import cz.muni.fi.pv260.team4.tictactoe.element.AlphabeticElementSupplier;
+import cz.muni.fi.pv260.team4.tictactoe.element.ElementSupplier;
 import cz.muni.fi.pv260.team4.tictactoe.entity.MatchConfiguration;
 import cz.muni.fi.pv260.team4.tictactoe.interfaces.IOProvider;
 import cz.muni.fi.pv260.team4.tictactoe.validators.BoardHeightValidator;
@@ -14,13 +15,15 @@ import lombok.AllArgsConstructor;
 public final class SetupPhase implements GamePhase {
     private final IOProvider ioProvider;
     private final GamePhaseFactory gamePhaseFactory;
+    private final ElementSupplier elementSupplier;
+
 
     @Override
     public GamePhase execute() {
         var playerCount = ioProvider.readLong(
                 "How many players",
                 Const.MINIMAL_PLAYER_COUNT,
-                new PlayerCountValidator()
+                new PlayerCountValidator(elementSupplier)
         );
 
         var boardWidth = ioProvider.readLong(
@@ -38,7 +41,7 @@ public final class SetupPhase implements GamePhase {
         var lengthOfWinningSequence = ioProvider.readLong(
                 "Length of the winning sequence",
                 Const.MINIMAL_LENGTH_OF_WINNING_SEQUENCE,
-                new WinningSequenceLengthValidator()
+                new WinningSequenceLengthValidator(boardWidth, boardHeight)
         );
 
         return gamePhaseFactory.getMatchPhase(
@@ -47,7 +50,7 @@ public final class SetupPhase implements GamePhase {
                         boardWidth,
                         boardHeight,
                         lengthOfWinningSequence
-                ), new AlphabeticElementSupplier()
+                ), elementSupplier
         );
     }
 }

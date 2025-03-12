@@ -9,6 +9,7 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class GamePhaseFactory {
     private final IOProvider ioProvider;
+    private final ElementSupplier elementSupplier;
 
     private final BoardFactory boardFactory = new BoardFactory();
 
@@ -18,7 +19,7 @@ public class GamePhaseFactory {
      * @return setup game phase
      */
     public GamePhase getSetupPhase() {
-        return new SetupPhase(ioProvider, this);
+        return new SetupPhase(ioProvider, this, elementSupplier);
     }
 
     /**
