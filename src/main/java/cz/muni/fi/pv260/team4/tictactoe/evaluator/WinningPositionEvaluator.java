@@ -4,10 +4,7 @@ import cz.muni.fi.pv260.team4.tictactoe.board.Board;
 import cz.muni.fi.pv260.team4.tictactoe.entity.MatchConfiguration;
 import lombok.AllArgsConstructor;
 
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @AllArgsConstructor
 public class WinningPositionEvaluator {
@@ -16,12 +13,17 @@ public class WinningPositionEvaluator {
     public MatchConfiguration matchConfiguration;
 
     public Optional<Character> getWinner() {
-        Collection<Iterator<Character>> iterators = List.of(
-                board.getHorizontalIterator(matchConfiguration, 0),
-                board.getVerticalIterator(matchConfiguration, 0),
-                board.getDescendingDiagonalIterator(matchConfiguration, 0),
-                board.getAscendingDiagonalIterator(matchConfiguration, 0)
-        );
+        Collection<Iterator<Character>> iterators = new ArrayList<>();
+
+        for(int row = 0; row < matchConfiguration.boardHeight(); row++){
+            iterators.add(board.getHorizontalIterator(matchConfiguration, row));
+            iterators.add(board.getAscendingDiagonalIterator(matchConfiguration, row));
+            iterators.add(board.getDescendingDiagonalIterator(matchConfiguration, row));
+        }
+
+        for(int column = 0; column < matchConfiguration.boardWidth(); column++){
+            iterators.add(board.getVerticalIterator(matchConfiguration, column));
+        }
 
         return iterators.stream()
                 .map(this::applyIterator)
@@ -35,6 +37,13 @@ public class WinningPositionEvaluator {
         int currentSequenceLength = 0;
         while (characterIterator.hasNext()) {
             Character character = characterIterator.next();
+
+            if(character.equals(board.getElementSupplier().getEmptyElement())) {
+                currentSequence = Optional.empty();
+                currentSequenceLength = 0;
+                continue;
+            }
+
             if(currentSequence.isEmpty() || !currentSequence.get().equals(character)) {
                 currentSequence = Optional.of(character);
                 currentSequenceLength = 1;
@@ -47,6 +56,6 @@ public class WinningPositionEvaluator {
             }
         }
 
-        return currentSequence;
+        return Optional.empty();
     }
 }
