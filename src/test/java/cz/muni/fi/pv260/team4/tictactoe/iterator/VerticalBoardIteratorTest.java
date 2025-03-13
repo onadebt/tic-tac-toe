@@ -44,7 +44,7 @@ class VerticalBoardIteratorTest {
             int row = invocation.getArgument(0); // First parameter (row)
             int col = invocation.getArgument(1); // Second parameter (column)
 
-            return IteratorTestConfig.testBoard[row][col];
+            return IteratorTestConfig.TEST_BOARD[row][col];
         });
 
         Queue<Character> responses = new LinkedList<>();

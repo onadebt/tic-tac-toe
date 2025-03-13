@@ -1,6 +1,7 @@
 package cz.muni.fi.pv260.team4.tictactoe.iterator;
 
 import cz.muni.fi.pv260.team4.tictactoe.board.Board;
+import cz.muni.fi.pv260.team4.tictactoe.element.ElementSupplier;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -45,7 +46,7 @@ class AscendingDiagonalIteratorTest {
             int row = invocation.getArgument(0); // First parameter (row)
             int col = invocation.getArgument(1); // Second parameter (column)
 
-            return IteratorTestConfig.testBoard[row][col];
+            return IteratorTestConfig.TEST_BOARD[row][col];
         });
 
         Queue<Character> responses = new LinkedList<>();
