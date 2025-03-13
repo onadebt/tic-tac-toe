@@ -1,6 +1,13 @@
 package cz.muni.fi.pv260.team4.tictactoe.board;
 
 import cz.muni.fi.pv260.team4.tictactoe.element.ElementSupplier;
+import cz.muni.fi.pv260.team4.tictactoe.entity.MatchConfiguration;
+import cz.muni.fi.pv260.team4.tictactoe.iterator.AscendingDiagonalBoardIterator;
+import cz.muni.fi.pv260.team4.tictactoe.iterator.DescendingDiagonalBoardIterator;
+import cz.muni.fi.pv260.team4.tictactoe.iterator.HorizontalBoardIterator;
+import cz.muni.fi.pv260.team4.tictactoe.iterator.VerticalBoardIterator;
+
+import java.util.Iterator;
 
 public interface Board {
 
@@ -57,4 +64,20 @@ public interface Board {
      * @return a new {@code Board} instance that is a copy of the current board
      */
     Board createCopy();
+
+    default Iterator<Character> getHorizontalIterator(MatchConfiguration matchConfiguration, int column) {
+        return new HorizontalBoardIterator(this, matchConfiguration, column);
+    }
+
+    default Iterator<Character> getVerticalIterator(MatchConfiguration matchConfiguration, int row) {
+        return new VerticalBoardIterator(this, matchConfiguration, row);
+    }
+
+    default Iterator<Character> getDescendingDiagonalIterator(MatchConfiguration matchConfiguration, int row) {
+        return new DescendingDiagonalBoardIterator(this, matchConfiguration, row);
+    }
+
+    default Iterator<Character> getAscendingDiagonalIterator(MatchConfiguration matchConfiguration, int row) {
+        return new AscendingDiagonalBoardIterator(this, matchConfiguration, row);
+    }
 }
