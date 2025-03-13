@@ -9,7 +9,6 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -25,27 +24,30 @@ class WinningPositionEvaluatorTest {
         Mockito.when(elementSupplier.getEmptyElement()).thenReturn(' ');
     }
 
-    private Optional<Character> evaluateBoard(TestBoard stub) {
-        return new WinningPositionEvaluator(stub, IteratorTestConfig.DEFAULT_MATCH_CONFIG).getWinner();
+    private Optional<Character> evaluateBoard(char[][] stub) {
+        return new WinningPositionEvaluator(
+                new TestBoard(stub, elementSupplier),
+                IteratorTestConfig.DEFAULT_MATCH_CONFIG)
+                .getWinner();
     }
 
     @Test
     void shouldReturnNoWinnerOnEmptyBoard() {
-        assertEquals(Optional.empty(), evaluateBoard(new TestBoard(IteratorTestConfig.EMPTY_BOARD, elementSupplier)));
+        assertEquals(Optional.empty(), evaluateBoard(IteratorTestConfig.EMPTY_BOARD));
     }
 
     @Test
     void shouldReturnNoWinnerOnNoWinnerBoardInstances() {
-        assertEquals(Optional.empty(), evaluateBoard(new TestBoard(IteratorTestConfig.NO_WINNER_1, elementSupplier)));
-        assertEquals(Optional.empty(), evaluateBoard(new TestBoard(IteratorTestConfig.NO_WINNER_2, elementSupplier)));
+        assertEquals(Optional.empty(), evaluateBoard(IteratorTestConfig.NO_WINNER_1));
+        assertEquals(Optional.empty(), evaluateBoard(IteratorTestConfig.NO_WINNER_2));
     }
 
     @Test
     void shouldReturnWinnerXOnWinnerXBoardInstances() {
-        assertEquals(Optional.of('X'), evaluateBoard(new TestBoard(IteratorTestConfig.WINNER_X_1, elementSupplier)));
-        assertEquals(Optional.of('X'), evaluateBoard(new TestBoard(IteratorTestConfig.WINNER_X_2, elementSupplier)));
-        assertEquals(Optional.of('X'), evaluateBoard(new TestBoard(IteratorTestConfig.WINNER_X_3, elementSupplier)));
-        assertEquals(Optional.of('X'), evaluateBoard(new TestBoard(IteratorTestConfig.WINNER_X_4, elementSupplier)));
+        assertEquals(Optional.of('X'), evaluateBoard(IteratorTestConfig.WINNER_X_1));
+        assertEquals(Optional.of('X'), evaluateBoard(IteratorTestConfig.WINNER_X_2));
+        assertEquals(Optional.of('X'), evaluateBoard(IteratorTestConfig.WINNER_X_3));
+        assertEquals(Optional.of('X'), evaluateBoard(IteratorTestConfig.WINNER_X_4));
     }
 
 }
