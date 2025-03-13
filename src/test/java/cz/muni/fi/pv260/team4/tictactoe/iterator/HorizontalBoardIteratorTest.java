@@ -9,15 +9,17 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.*;
+import java.util.LinkedList;
+import java.util.Queue;
 
 import static org.mockito.ArgumentMatchers.anyInt;
 
 @ExtendWith(MockitoExtension.class)
 class HorizontalBoardIteratorTest {
 
+    public static final char[][] TEST_BOARD = IteratorTestConfig.getTestBoard();
     @Mock
-    Board board;
+    private Board board;
 
     private HorizontalBoardIterator iterator;
 
@@ -44,7 +46,7 @@ class HorizontalBoardIteratorTest {
             int row = invocation.getArgument(0); // First parameter (row)
             int col = invocation.getArgument(1); // Second parameter (column)
 
-            return IteratorTestConfig.TEST_BOARD[row][col];
+            return TEST_BOARD[row][col];
         });
 
         Queue<Character> responses = new LinkedList<>();
@@ -56,5 +58,4 @@ class HorizontalBoardIteratorTest {
         Assertions.assertEquals('O', responses.poll());
         Assertions.assertEquals('X', responses.poll());
     }
-
 }

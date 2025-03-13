@@ -4,24 +4,49 @@ import cz.muni.fi.pv260.team4.tictactoe.board.Board;
 import cz.muni.fi.pv260.team4.tictactoe.entity.MatchConfiguration;
 import lombok.AllArgsConstructor;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.Optional;
 
 @AllArgsConstructor
-public class WinningPositionEvaluator {
+public final class WinningPositionEvaluator {
 
-    public Board board;
-    public MatchConfiguration matchConfiguration;
+    private Board board;
+    private MatchConfiguration matchConfiguration;
 
+    /**
+     * Determines if there is a winning sequence on the board.
+     * <p>
+     * This method iterates through all possible winning lines (rows, columns, and diagonals)
+     * to check for a sequence that meets the winning conditions specified in the
+     * {@link MatchConfiguration}.
+     * </p>
+     *
+     * <p>It collects iterators for:</p>
+     * <ul>
+     *     <li>All rows (left to right)</li>
+     *     <li>All columns (top to bottom)</li>
+     *     <li>All ascending diagonals (bottom-left to top-right)</li>
+     *     <li>All descending diagonals (top-left to bottom-right)</li>
+     * </ul>
+     *
+     * <p>The method applies the {@link #applyIterator(Iterator)} function to each iterator and
+     * returns the first non-empty winning result found.</p>
+     *
+     * @return an {@link Optional} containing the winning character if a winning sequence is found,
+     *         otherwise {@code Optional.empty()}
+     */
     public Optional<Character> getWinner() {
         Collection<Iterator<Character>> iterators = new ArrayList<>();
 
-        for(int row = 0; row < matchConfiguration.boardHeight(); row++){
+        for (int row = 0; row < matchConfiguration.boardHeight(); row++) {
             iterators.add(board.getHorizontalIterator(matchConfiguration, row));
             iterators.add(board.getAscendingDiagonalIterator(matchConfiguration, row));
             iterators.add(board.getDescendingDiagonalIterator(matchConfiguration, row));
         }
 
-        for(int column = 0; column < matchConfiguration.boardWidth(); column++){
+        for (int column = 0; column < matchConfiguration.boardWidth(); column++) {
             iterators.add(board.getVerticalIterator(matchConfiguration, column));
         }
 
@@ -32,26 +57,26 @@ public class WinningPositionEvaluator {
                 .findFirst();
     }
 
-    private Optional<Character> applyIterator(Iterator<Character> characterIterator) {
+    private Optional<Character> applyIterator(final Iterator<Character> characterIterator) {
         Optional<Character> currentSequence = Optional.empty();
         int currentSequenceLength = 0;
         while (characterIterator.hasNext()) {
             Character character = characterIterator.next();
 
-            if(character.equals(board.getElementSupplier().getEmptyElement())) {
+            if (character.equals(board.getElementSupplier().getEmptyElement())) {
                 currentSequence = Optional.empty();
                 currentSequenceLength = 0;
                 continue;
             }
 
-            if(currentSequence.isEmpty() || !currentSequence.get().equals(character)) {
+            if (currentSequence.isEmpty() || !currentSequence.get().equals(character)) {
                 currentSequence = Optional.of(character);
                 currentSequenceLength = 1;
-            } else{
+            } else {
                 currentSequenceLength++;
             }
 
-            if(currentSequenceLength == matchConfiguration.winningSequenceLength()) {
+            if (currentSequenceLength == matchConfiguration.winningSequenceLength()) {
                 return currentSequence;
             }
         }

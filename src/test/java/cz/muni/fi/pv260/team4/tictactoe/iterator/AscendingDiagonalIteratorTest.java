@@ -1,7 +1,6 @@
 package cz.muni.fi.pv260.team4.tictactoe.iterator;
 
 import cz.muni.fi.pv260.team4.tictactoe.board.Board;
-import cz.muni.fi.pv260.team4.tictactoe.element.ElementSupplier;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -18,8 +17,9 @@ import static org.mockito.ArgumentMatchers.anyInt;
 @ExtendWith(MockitoExtension.class)
 class AscendingDiagonalIteratorTest {
 
+    public static final char[][] TEST_BOARD = IteratorTestConfig.getTestBoard();
     @Mock
-    Board board;
+    private Board board;
 
     private AscendingDiagonalBoardIterator iterator;
 
@@ -30,7 +30,7 @@ class AscendingDiagonalIteratorTest {
 
 
     @Test
-    public void shouldCallGetElementCorrectAmountOfTimes()  {
+    public void shouldCallGetElementCorrectAmountOfTimes() {
         Mockito.when(board.getCell(anyInt(), anyInt())).thenReturn('X');
 
         while (iterator.hasNext()) {
@@ -46,7 +46,7 @@ class AscendingDiagonalIteratorTest {
             int row = invocation.getArgument(0); // First parameter (row)
             int col = invocation.getArgument(1); // Second parameter (column)
 
-            return IteratorTestConfig.TEST_BOARD[row][col];
+            return TEST_BOARD[row][col];
         });
 
         Queue<Character> responses = new LinkedList<>();
@@ -59,5 +59,4 @@ class AscendingDiagonalIteratorTest {
         Assertions.assertEquals('X', responses.remove());
         Assertions.assertEquals('X', responses.remove());
     }
-
 }

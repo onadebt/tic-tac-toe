@@ -17,8 +17,9 @@ import static org.mockito.ArgumentMatchers.anyInt;
 @ExtendWith(MockitoExtension.class)
 class DescendingDiagonalIteratorTest {
 
+    public static final char[][] TEST_BOARD = IteratorTestConfig.getTestBoard();
     @Mock
-    Board board;
+    private Board board;
 
     private DescendingDiagonalBoardIterator iterator;
 
@@ -45,7 +46,7 @@ class DescendingDiagonalIteratorTest {
             int row = invocation.getArgument(0); // First parameter (row)
             int col = invocation.getArgument(1); // Second parameter (column)
 
-            return IteratorTestConfig.TEST_BOARD[row][col];
+            return TEST_BOARD[row][col];
         });
 
         Queue<Character> responses = new LinkedList<>();
@@ -58,5 +59,4 @@ class DescendingDiagonalIteratorTest {
         Assertions.assertEquals('X', responses.remove());
         Assertions.assertEquals('X', responses.remove());
     }
-
 }

@@ -9,15 +9,17 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.*;
+import java.util.LinkedList;
+import java.util.Queue;
 
 import static org.mockito.ArgumentMatchers.anyInt;
 
 @ExtendWith(MockitoExtension.class)
 class VerticalBoardIteratorTest {
 
+    public static final char[][] TEST_BOARD = IteratorTestConfig.getTestBoard();
     @Mock
-    Board board;
+    private Board board;
 
     private VerticalBoardIterator iterator;
 
@@ -28,7 +30,7 @@ class VerticalBoardIteratorTest {
 
 
     @Test
-    public void shouldCallGetElementCorrectAmountOfTimes()  {
+    public void shouldCallGetElementCorrectAmountOfTimes() {
         Mockito.when(board.getCell(anyInt(), anyInt())).thenReturn('X');
 
         while (iterator.hasNext()) {
@@ -44,7 +46,7 @@ class VerticalBoardIteratorTest {
             int row = invocation.getArgument(0); // First parameter (row)
             int col = invocation.getArgument(1); // Second parameter (column)
 
-            return IteratorTestConfig.TEST_BOARD[row][col];
+            return TEST_BOARD[row][col];
         });
 
         Queue<Character> responses = new LinkedList<>();
@@ -61,5 +63,4 @@ class VerticalBoardIteratorTest {
         Assertions.assertEquals('O', responses.remove());
         Assertions.assertEquals('O', responses.remove());
     }
-
 }

@@ -5,18 +5,18 @@ import cz.muni.fi.pv260.team4.tictactoe.element.ElementSupplier;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
-public class TestBoard implements Board {
+public final class TestBoard implements Board {
 
-    char[][] board;
+    private char[][] board;
     private ElementSupplier elementSupplier;
 
     @Override
-    public Character getCell(int row, int column) {
+    public Character getCell(final int row, final int column) {
         return board[row][column];
     }
 
     @Override
-    public void setCell(int row, int column, Character cell) {
+    public void setCell(final int row, final int column, final Character cell) {
         board[row][column] = cell;
     }
 
