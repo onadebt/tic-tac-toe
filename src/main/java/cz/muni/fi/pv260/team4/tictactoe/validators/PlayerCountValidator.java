@@ -2,16 +2,20 @@ package cz.muni.fi.pv260.team4.tictactoe.validators;
 
 import cz.muni.fi.pv260.team4.tictactoe.Const;
 import cz.muni.fi.pv260.team4.tictactoe.element.ElementSupplier;
+import lombok.AllArgsConstructor;
 
 import java.util.Optional;
 
+@AllArgsConstructor
 public final class PlayerCountValidator implements InputValidator<Long> {
     private final ElementSupplier elementSupplier;
 
-    public PlayerCountValidator(ElementSupplier elementSupplier) {
-        this.elementSupplier = elementSupplier;
-    }
-
+    /**
+     * Validate the number of players.
+     *
+     * @param numOfPlayers Number of players to validate
+     * @return Optional containing error message if validation fails, otherwise empty
+     */
     @Override
     public Optional<String> validate(final Long numOfPlayers) {
         int maxPlayers = elementSupplier.getMaxOrder();
