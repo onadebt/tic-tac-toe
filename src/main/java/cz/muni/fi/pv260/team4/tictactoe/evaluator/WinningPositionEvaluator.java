@@ -40,6 +40,8 @@ public final class WinningPositionEvaluator {
     public Optional<Character> getWinner() {
         Collection<Iterator<Character>> iterators = new ArrayList<>();
 
+        // First construct all possible iterators for the Board
+
         for (int row = 0; row < matchConfiguration.boardHeight(); row++) {
             iterators.add(board.getHorizontalIterator(matchConfiguration, row));
             iterators.add(board.getAscendingDiagonalIterator(matchConfiguration, row));
@@ -50,6 +52,7 @@ public final class WinningPositionEvaluator {
             iterators.add(board.getVerticalIterator(matchConfiguration, column));
         }
 
+        // Check if any of the iterators contain winning sequence
         return iterators.stream()
                 .map(this::applyIterator)
                 .filter(Optional::isPresent)
