@@ -17,7 +17,7 @@ public abstract class BoardIterator implements Iterator<Character> {
 
     @Override
     public boolean hasNext() {
-        return column < matchConfiguration.boardWidth() && row < matchConfiguration.boardHeight();
+        return column >= 0 && row >= 0 && column < matchConfiguration.boardWidth() && row < matchConfiguration.boardHeight();
     }
 
     @Override
