@@ -3,6 +3,7 @@ package cz.muni.fi.pv260.team4.tictactoe.evaluator;
 import cz.muni.fi.pv260.team4.tictactoe.board.Board;
 import cz.muni.fi.pv260.team4.tictactoe.entity.MatchConfiguration;
 import lombok.AllArgsConstructor;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -31,13 +32,29 @@ public final class WinningPositionEvaluator {
      *     <li>All descending diagonals (top-left to bottom-right)</li>
      * </ul>
      *
-     * <p>The method applies the {@link #applyIterator(Iterator)} function to each iterator and
+     * <p>The method applies the {@link #detectWinningSequence(Iterator)} function to each iterator and
      * returns the first non-empty winning result found.</p>
      *
      * @return an {@link Optional} containing the winning character if a winning sequence is found,
-     *         otherwise {@code Optional.empty()}
+     * otherwise {@code Optional.empty()}
      */
     public Optional<Character> getWinner() {
+        Collection<Iterator<Character>> iterators = createBoardIterators();
+
+        return processIterators(iterators);
+    }
+
+    @NotNull
+    private Optional<Character> processIterators(final Collection<Iterator<Character>> iterators) {
+        return iterators.stream()
+                .map(this::detectWinningSequence)
+                .filter(Optional::isPresent)
+                .map(Optional::get)
+                .findFirst();
+    }
+
+    @NotNull
+    private Collection<Iterator<Character>> createBoardIterators() {
         Collection<Iterator<Character>> iterators = new ArrayList<>();
 
         // First construct all possible iterators for the Board
@@ -51,16 +68,10 @@ public final class WinningPositionEvaluator {
         for (int column = 0; column < matchConfiguration.boardWidth(); column++) {
             iterators.add(board.getVerticalIterator(matchConfiguration, column));
         }
-
-        // Check if any of the iterators contain winning sequence
-        return iterators.stream()
-                .map(this::applyIterator)
-                .filter(Optional::isPresent)
-                .map(Optional::get)
-                .findFirst();
+        return iterators;
     }
 
-    private Optional<Character> applyIterator(final Iterator<Character> characterIterator) {
+    private Optional<Character> detectWinningSequence(final Iterator<Character> characterIterator) {
         Optional<Character> currentSequence = Optional.empty();
         int currentSequenceLength = 0;
         while (characterIterator.hasNext()) {
