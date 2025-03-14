@@ -1,6 +1,7 @@
 package cz.muni.fi.pv260.team4.tictactoe.board;
 
 import cz.muni.fi.pv260.team4.tictactoe.element.ElementSupplier;
+import cz.muni.fi.pv260.team4.tictactoe.entity.MatchConfiguration;
 
 public interface Board {
 
@@ -10,11 +11,12 @@ public interface Board {
      * If the specified row or column is out of bounds, an exception is thrown.
      * </p>
      *
-     * @param row the row number of the cell
+     * @param row    the row number of the cell
      * @param column the column number of the cell
      * @return the character at the specified position on the board
-     * @throws cz.muni.fi.pv260.team4.tictactoe.exception.BoardPositionOutOfBoundsException
-     * if the row or column is outside the valid range
+     * @throws cz.muni.fi.pv260.team4.tictactoe.exception.BoardPositionOutOfBoundsException if the
+     *                                                                                      row or column is outside the
+     *                                                                                      valid range
      */
     Character getCell(int row, int column);
 
@@ -24,17 +26,18 @@ public interface Board {
      * If the specified row or column is out of bounds, an exception is thrown.
      * </p>
      *
-     * @param row the row number of the cell
+     * @param row    the row number of the cell
      * @param column the column number of the cell
-     * @param cell the character to be set at the specified position
-     * @throws cz.muni.fi.pv260.team4.tictactoe.exception.BoardPositionOutOfBoundsException
-     * if the row or column is outside the valid range
+     * @param cell   the character to be set at the specified position
+     * @throws cz.muni.fi.pv260.team4.tictactoe.exception.BoardPositionOutOfBoundsException if the
+     *                                                                                      row or column is outside the
+     *                                                                                      valid range
      */
     void setCell(int row, int column, Character cell);
 
     /**
-     * Retrieves the {@link ElementSupplier} associated with this board.
-     * The element supplier provides the empty and player's elements (characters) for the board.
+     * Retrieves the {@link ElementSupplier} associated with this board. The element supplier
+     * provides the empty and player's elements (characters) for the board.
      *
      * @return the element supplier instance used by this board
      */
@@ -43,7 +46,7 @@ public interface Board {
     /**
      * Checks if the specified cell is empty based on the board's element supplier.
      *
-     * @param row the row number of the cell
+     * @param row    the row number of the cell
      * @param column the column number of the cell
      * @return {@code true} if the cell is empty, {@code false} otherwise
      */
@@ -57,4 +60,11 @@ public interface Board {
      * @return a new {@code Board} instance that is a copy of the current board
      */
     Board createCopy();
+
+    /**
+     * Retrieves the match configuration associated with the board.
+     *
+     * @return the {@link MatchConfiguration} used by this board.
+     */
+    MatchConfiguration getMatchConfiguration();
 }

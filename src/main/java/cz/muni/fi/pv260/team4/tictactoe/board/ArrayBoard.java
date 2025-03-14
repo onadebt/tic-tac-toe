@@ -20,8 +20,9 @@ public final class ArrayBoard implements Board {
 
     /**
      * Allocates and fills a new grid with empty elements.
+     *
      * @param matchConfiguration Configuration for the match, from which the grid dimensions are obtained
-     * @param elementSupplier Element supplier for the match that defines the empty element
+     * @param elementSupplier    Element supplier for the match that defines the empty element
      * @return Allocated grid filled with empty characters
      */
     public static Character[][] getEmptyGrid(
