@@ -123,7 +123,7 @@ public interface Board {
         return new AscendingDiagonalBoardIterator(this, matchConfiguration, row);
     }
 
-    /*
+    /**
      * Retrieves the match configuration associated with the board.
      *
      * @return the {@link MatchConfiguration} used by this board.
