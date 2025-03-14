@@ -15,9 +15,19 @@ public final class Const {
     public static final long MINIMAL_BOARD_WIDTH = 3L;
 
     /**
+     * Default maximal width of a game board.
+     */
+    public static final long MAXIMAL_BOARD_WIDTH = 30L;
+
+    /**
      * Default minimal height of a game board.
      */
     public static final long MINIMAL_BOARD_HEIGHT = 3L;
+
+    /**
+     * Default maximal height of a game board.
+     */
+    public static final long MAXIMAL_BOARD_HEIGHT = 30L;
 
     /**
      * Default minimal length of a winning sequence.
