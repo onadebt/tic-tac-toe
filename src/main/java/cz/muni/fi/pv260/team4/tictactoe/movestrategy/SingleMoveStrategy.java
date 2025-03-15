@@ -23,14 +23,14 @@ public final class SingleMoveStrategy implements MoveStrategy<Pair<Integer, Inte
         int row = positions.component1();
         int col = positions.component2();
 
-        while (!board.isCellEmpty(row, col)) {
+        while (!board.isCellEmpty(row - 1, col - 1)) {
             System.err.println("This cell is already taken. Please choose another one.\n");
             positions = getMoveParameterGatherer().gatherMoveParameters();
             row = positions.component1();
             col = positions.component2();
         }
 
-        board.setCell(row, col, player);
+        board.setCell(row - 1, col - 1, player);
     }
 
     /**
@@ -41,5 +41,10 @@ public final class SingleMoveStrategy implements MoveStrategy<Pair<Integer, Inte
     @Override
     public MoveParameterGatherer<Pair<Integer, Integer>> getMoveParameterGatherer() {
         return new PositionGatherer(ioProvider, configuration);
+    }
+
+    @Override
+    public String toString() {
+        return "Single Move";
     }
 }
