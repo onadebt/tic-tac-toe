@@ -1,0 +1,5 @@
+There have to be at least 2 players
+Minimum width of the board is 3
+Length of the winning sequence has to be at least 3
+This cell is already taken. Please choose another one.
+
