@@ -24,7 +24,8 @@ public final class SingleMoveStrategy implements MoveStrategy<Pair<Integer, Inte
         int col = positions.component2();
 
         while (!board.isCellEmpty(row - 1, col - 1)) {
-            System.err.println("This cell is already taken. Please choose another one.\n");
+            System.err.println("This cell is already taken. Please choose another one.");
+            System.err.println();
             positions = getMoveParameterGatherer().gatherMoveParameters();
             row = positions.component1();
             col = positions.component2();

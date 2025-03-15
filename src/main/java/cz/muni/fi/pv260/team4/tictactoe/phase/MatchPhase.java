@@ -28,7 +28,8 @@ public final class MatchPhase implements GamePhase {
     @Override
     public GamePhase execute() {
         while (!isGameOver()) {
-            ioProvider.writeString("Player " + (currentPlayerIndex + 1) + " turn\n");
+            ioProvider.writeString("Player " + (currentPlayerIndex + 1) + " turn");
+            ioProvider.newline();
             MoveStrategy<?> moveStrategy = selectStrategy();
             boardDisplay.displayBoard(board);
             executePlayerTurn(moveStrategy);
@@ -38,11 +39,12 @@ public final class MatchPhase implements GamePhase {
     }
 
     private MoveStrategy<?> selectStrategy() {
-        StringBuilder sb = new StringBuilder("Choose strategy:\n");
+        StringBuilder sb = new StringBuilder("Choose strategy:");
+        sb.append(System.lineSeparator());
         List<MoveStrategy<?>> moveStrategyList = strategyFactory.getMoveStrategyList();
         for (int i = 0; i < moveStrategyList.size(); i++) {
             MoveStrategy<?> strategy = moveStrategyList.get(i);
-            sb.append(i + 1).append(" - ").append(strategy).append("\n");
+            sb.append(i + 1).append(" - ").append(strategy).append(System.lineSeparator());
         }
 
         int strategyIndex = ioProvider.readInt(sb.toString(), new StrategyValidator(strategyFactory));
