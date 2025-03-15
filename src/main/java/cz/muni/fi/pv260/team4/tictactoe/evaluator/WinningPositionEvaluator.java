@@ -59,13 +59,13 @@ public final class WinningPositionEvaluator {
 
         // First construct all possible iterators for the Board
 
-        for (int row = 0; row < matchConfiguration.boardHeight(); row++) {
+        for (int row = 0; row < matchConfiguration.getBoardHeight(); row++) {
             iterators.add(board.getHorizontalIterator(matchConfiguration, row));
             iterators.add(board.getAscendingDiagonalIterator(matchConfiguration, row));
             iterators.add(board.getDescendingDiagonalIterator(matchConfiguration, row));
         }
 
-        for (int column = 0; column < matchConfiguration.boardWidth(); column++) {
+        for (int column = 0; column < matchConfiguration.getBoardWidth(); column++) {
             iterators.add(board.getVerticalIterator(matchConfiguration, column));
         }
         return iterators;
@@ -90,7 +90,7 @@ public final class WinningPositionEvaluator {
                 currentSequenceLength++;
             }
 
-            if (currentSequenceLength == matchConfiguration.winningSequenceLength()) {
+            if (currentSequenceLength == matchConfiguration.getWinningSequenceLength()) {
                 return currentSequence;
             }
         }

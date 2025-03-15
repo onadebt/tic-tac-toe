@@ -1,0 +1,40 @@
+package cz.muni.fi.pv260.team4.tictactoe.movestrategy;
+
+import cz.muni.fi.pv260.team4.tictactoe.entity.MatchConfiguration;
+import cz.muni.fi.pv260.team4.tictactoe.interfaces.IOProvider;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public final class StrategyFactory {
+    private final List<MoveStrategy<?>> moveStrategyList = new ArrayList<>();
+
+    /**
+     * StrategyFactory constructor.
+     *
+     * @param ioProvider          IOProvider
+     * @param matchConfiguration  MatchConfiguration
+     */
+    public StrategyFactory(final IOProvider ioProvider, final MatchConfiguration matchConfiguration) {
+        moveStrategyList.add(new SingleMoveStrategy(ioProvider, matchConfiguration));
+    }
+
+    /**
+     * Get list of all available move strategies.
+     *
+     * @return List of MoveStrategy
+     */
+    public List<MoveStrategy<?>> getMoveStrategyList() {
+        return moveStrategyList;
+    }
+
+    /**
+     * Choose strategy based on the user input.
+     *
+     * @param strategy move type
+     * @return MoveStrategy
+     */
+    public MoveStrategy<?> chooseStrategy(final int strategy) {
+        return moveStrategyList.get(strategy - 1);
+    }
+}

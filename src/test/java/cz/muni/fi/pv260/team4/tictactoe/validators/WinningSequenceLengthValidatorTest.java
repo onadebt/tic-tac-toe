@@ -7,8 +7,8 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class WinningSequenceLengthValidatorTest {
-    private static final long BOARD_WIDTH = 5L;
-    private static final long BOARD_HEIGHT = 5L;
+    private static final int BOARD_WIDTH = 5;
+    private static final int BOARD_HEIGHT = 5;
     private WinningSequenceLengthValidator validator;
 
     @BeforeEach

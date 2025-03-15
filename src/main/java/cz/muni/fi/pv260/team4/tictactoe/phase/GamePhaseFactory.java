@@ -1,17 +1,23 @@
 package cz.muni.fi.pv260.team4.tictactoe.phase;
 
-import cz.muni.fi.pv260.team4.tictactoe.board.BoardFactory;
+import cz.muni.fi.pv260.team4.tictactoe.board.Board;
 import cz.muni.fi.pv260.team4.tictactoe.element.ElementSupplier;
 import cz.muni.fi.pv260.team4.tictactoe.entity.MatchConfiguration;
+import cz.muni.fi.pv260.team4.tictactoe.evaluator.WinningPositionEvaluator;
+import cz.muni.fi.pv260.team4.tictactoe.interfaces.BoardDisplay;
 import cz.muni.fi.pv260.team4.tictactoe.interfaces.IOProvider;
-import lombok.AllArgsConstructor;
+import cz.muni.fi.pv260.team4.tictactoe.movestrategy.StrategyFactory;
+import lombok.RequiredArgsConstructor;
 
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class GamePhaseFactory {
     private final IOProvider ioProvider;
-    private final ElementSupplier supplier;
-
-    private final BoardFactory boardFactory = new BoardFactory();
+    private final ElementSupplier elementSupplier;
+    private final BoardDisplay boardDisplay;
+    private final MatchConfiguration matchConfiguration;
+    private final Board board;
+    private final StrategyFactory strategyFactory;
+    private final WinningPositionEvaluator winningPositionEvaluator;
 
     /**
      * Construct setup phase.
@@ -19,21 +25,23 @@ public class GamePhaseFactory {
      * @return setup game phase
      */
     public GamePhase getSetupPhase() {
-        return new SetupPhase(ioProvider, this, supplier);
+        return new SetupPhase(ioProvider, this, elementSupplier, matchConfiguration);
     }
 
     /**
      * Construct match phase.
      *
-     * @param configuration Configuration of game match
-     * @param elementSupplier Element supplier for the board
      * @return match game phase
      */
-    public GamePhase getMatchPhase(final MatchConfiguration configuration, final ElementSupplier elementSupplier) {
+    public GamePhase getMatchPhase() {
         return new MatchPhase(
-                this,
                 ioProvider,
-                configuration,
-                boardFactory.createEmptyBoard(configuration, elementSupplier));
+                matchConfiguration,
+                board,
+                strategyFactory,
+                boardDisplay,
+                elementSupplier,
+                winningPositionEvaluator
+        );
     }
 }

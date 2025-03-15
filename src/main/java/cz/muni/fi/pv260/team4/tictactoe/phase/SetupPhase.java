@@ -15,41 +15,40 @@ public final class SetupPhase implements GamePhase {
     private final IOProvider ioProvider;
     private final GamePhaseFactory gamePhaseFactory;
     private final ElementSupplier elementSupplier;
+    private final MatchConfiguration matchConfiguration;
 
 
     @Override
     public GamePhase execute() {
-        var playerCount = ioProvider.readLong(
+        var playerCount = ioProvider.readInt(
                 "How many players",
                 Const.MINIMAL_PLAYER_COUNT,
                 new PlayerCountValidator(elementSupplier)
         );
 
-        var boardWidth = ioProvider.readLong(
+        var boardWidth = ioProvider.readInt(
                 "Width of the board",
                 Const.MINIMAL_BOARD_WIDTH,
                 new BoardWidthValidator()
         );
 
-        var boardHeight = ioProvider.readLong(
+        var boardHeight = ioProvider.readInt(
                 "Height of the board",
                 Const.MINIMAL_BOARD_HEIGHT,
                 new BoardHeightValidator()
         );
 
-        var lengthOfWinningSequence = ioProvider.readLong(
+        var lengthOfWinningSequence = ioProvider.readInt(
                 "Length of the winning sequence",
                 Const.MINIMAL_LENGTH_OF_WINNING_SEQUENCE,
                 new WinningSequenceLengthValidator(boardWidth, boardHeight)
         );
 
-        return gamePhaseFactory.getMatchPhase(
-                new MatchConfiguration(
-                        playerCount,
-                        boardWidth,
-                        boardHeight,
-                        lengthOfWinningSequence
-                ), elementSupplier
-        );
+        matchConfiguration.setBoardHeight(boardHeight);
+        matchConfiguration.setBoardWidth(boardWidth);
+        matchConfiguration.setPlayerCount(playerCount);
+        matchConfiguration.setWinningSequenceLength(lengthOfWinningSequence);
+
+        return gamePhaseFactory.getMatchPhase();
     }
 }

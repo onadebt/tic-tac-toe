@@ -7,7 +7,7 @@ import lombok.AllArgsConstructor;
 import java.util.Optional;
 
 @AllArgsConstructor
-public final class PlayerCountValidator implements InputValidator<Long> {
+public final class PlayerCountValidator implements InputValidator<Integer> {
     private final ElementSupplier elementSupplier;
 
     /**
@@ -17,7 +17,7 @@ public final class PlayerCountValidator implements InputValidator<Long> {
      * @return Optional containing error message if validation fails, otherwise empty
      */
     @Override
-    public Optional<String> validate(final Long numOfPlayers) {
+    public Optional<String> validate(final Integer numOfPlayers) {
         int maxPlayers = elementSupplier.getMaxOrder();
 
         if (numOfPlayers < Const.MINIMAL_PLAYER_COUNT) {

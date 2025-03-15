@@ -7,30 +7,30 @@ public final class Const {
     /**
      * Default minimum player count.
      */
-    public static final long MINIMAL_PLAYER_COUNT = 2L;
+    public static final int MINIMAL_PLAYER_COUNT = 2;
 
     /**
      * Default minimal width of a game board.
      */
-    public static final long MINIMAL_BOARD_WIDTH = 3L;
+    public static final int MINIMAL_BOARD_WIDTH = 3;
 
     /**
      * Default maximal width of a game board.
      */
-    public static final long MAXIMAL_BOARD_WIDTH = 30L;
+    public static final int MAXIMAL_BOARD_WIDTH = 30;
 
     /**
      * Default minimal height of a game board.
      */
-    public static final long MINIMAL_BOARD_HEIGHT = 3L;
+    public static final int MINIMAL_BOARD_HEIGHT = 3;
 
     /**
      * Default maximal height of a game board.
      */
-    public static final long MAXIMAL_BOARD_HEIGHT = 30L;
+    public static final int MAXIMAL_BOARD_HEIGHT = 30;
 
     /**
      * Default minimal length of a winning sequence.
      */
-    public static final long MINIMAL_LENGTH_OF_WINNING_SEQUENCE = 3L;
+    public static final int MINIMAL_LENGTH_OF_WINNING_SEQUENCE = 3;
 }

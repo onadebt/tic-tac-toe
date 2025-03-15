@@ -29,9 +29,9 @@ public final class ArrayBoard implements Board {
             final MatchConfiguration matchConfiguration,
             final ElementSupplier elementSupplier) {
         Character[][] grid = new Character
-                [(int) matchConfiguration.boardHeight()]
-                [(int) matchConfiguration.boardWidth()];
-        for (int i = 0; i < matchConfiguration.boardHeight(); i++) {
+                [(int) matchConfiguration.getBoardHeight()]
+                [(int) matchConfiguration.getBoardWidth()];
+        for (int i = 0; i < matchConfiguration.getBoardHeight(); i++) {
             Arrays.fill(grid[i], elementSupplier.getEmptyElement());
         }
 
@@ -58,8 +58,8 @@ public final class ArrayBoard implements Board {
      * @throws BoardPositionOutOfBoundsException if the row or column index is out of bounds.
      */
     private void validateBounds(final int row, final int column) {
-        if (row < 0 || row >= getMatchConfiguration().boardHeight()
-                || column < 0 || column >= getMatchConfiguration().boardWidth()) {
+        if (row < 0 || row >= getMatchConfiguration().getBoardHeight()
+                || column < 0 || column >= getMatchConfiguration().getBoardWidth()) {
             throw new BoardPositionOutOfBoundsException(row, column, grid.length, grid[0].length);
         }
     }

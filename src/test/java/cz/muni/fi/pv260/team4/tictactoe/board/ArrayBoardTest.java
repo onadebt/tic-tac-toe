@@ -39,8 +39,8 @@ class ArrayBoardTest {
         Board board = new ArrayBoard(elementSupplier, matchConfiguration, grid);
 
         // Ensure every cell in the grid is initialized to the empty element
-        for (int row = 0; row < matchConfiguration.boardHeight(); row++) {
-            for (int col = 0; col < matchConfiguration.boardWidth(); col++) {
+        for (int row = 0; row < matchConfiguration.getBoardHeight(); row++) {
+            for (int col = 0; col < matchConfiguration.getBoardWidth(); col++) {
                 assertEquals(elementSupplier.getEmptyElement(), grid[row][col]);
                 assertEquals(elementSupplier.getEmptyElement(), board.getCell(row, col));
                 assertTrue(board.isCellEmpty(row, col)); // Ensure cells are empty
@@ -86,9 +86,9 @@ class ArrayBoardTest {
 
         for (int attempt = 0; attempt < attempts; attempt++) {
             // Generate random row, column, and player
-            int row = random.nextInt((int) matchConfiguration.boardHeight());
-            int col = random.nextInt((int) matchConfiguration.boardWidth());
-            int playerNum = random.nextInt((int) matchConfiguration.playerCount());
+            int row = random.nextInt((int) matchConfiguration.getBoardHeight());
+            int col = random.nextInt((int) matchConfiguration.getBoardWidth());
+            int playerNum = random.nextInt((int) matchConfiguration.getPlayerCount());
 
             // Get the player's element and insert into the board
             Character player = elementSupplier.getElement(playerNum);
@@ -140,8 +140,8 @@ class ArrayBoardTest {
         Board board = new ArrayBoard(elementSupplier, matchConfiguration, grid);
 
         // Iterate through all valid positions and ensure no exception is thrown
-        for (int row = 0; row < matchConfiguration.boardHeight(); row++) {
-            for (int col = 0; col < matchConfiguration.boardWidth(); col++) {
+        for (int row = 0; row < matchConfiguration.getBoardHeight(); row++) {
+            for (int col = 0; col < matchConfiguration.getBoardWidth(); col++) {
                 int finalRow = row;
                 int finalCol = col;
                 assertDoesNotThrow(() -> board.getCell(finalRow, finalCol));
