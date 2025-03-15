@@ -1,35 +1,23 @@
 package cz.muni.fi.pv260.team4.tictactoe.phase;
 
+import cz.muni.fi.pv260.team4.tictactoe.board.Board;
 import cz.muni.fi.pv260.team4.tictactoe.board.BoardFactory;
 import cz.muni.fi.pv260.team4.tictactoe.element.ElementSupplier;
 import cz.muni.fi.pv260.team4.tictactoe.entity.MatchConfiguration;
+import cz.muni.fi.pv260.team4.tictactoe.evaluator.WinningPositionEvaluator;
 import cz.muni.fi.pv260.team4.tictactoe.infrastructure.TerminalBoardDisplay;
 import cz.muni.fi.pv260.team4.tictactoe.interfaces.BoardDisplay;
 import cz.muni.fi.pv260.team4.tictactoe.interfaces.IOProvider;
 import cz.muni.fi.pv260.team4.tictactoe.movestrategy.StrategyFactory;
+import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
+@RequiredArgsConstructor
 public class GamePhaseFactory {
     private final IOProvider ioProvider;
     private final ElementSupplier elementSupplier;
     private final BoardFactory boardFactory;
-    private final StrategyFactory strategyFactory;
     private final BoardDisplay boardDisplay;
-
-    /**
-     * Constructor for GamePhaseFactory.
-     *
-     * @param provider IOProvider
-     * @param supplier   Element supplier
-     */
-    public GamePhaseFactory(final IOProvider provider, final ElementSupplier supplier) {
-        this.ioProvider = provider;
-        this.elementSupplier = supplier;
-        boardFactory = new BoardFactory();
-        strategyFactory = new StrategyFactory(provider);
-        boardDisplay = new TerminalBoardDisplay(provider);
-
-    }
-
 
     /**
      * Construct setup phase.
@@ -48,13 +36,17 @@ public class GamePhaseFactory {
      * @return match game phase
      */
     public GamePhase getMatchPhase(final MatchConfiguration configuration, final ElementSupplier supplier) {
+        Board board = boardFactory.createEmptyBoard(configuration, supplier);
+        StrategyFactory strategyFactory = new StrategyFactory(ioProvider, configuration);
+
         return new MatchPhase(
                 ioProvider,
                 configuration,
-                boardFactory.createEmptyBoard(configuration, supplier),
+                board,
                 strategyFactory,
                 boardDisplay,
-                supplier
+                supplier,
+                new WinningPositionEvaluator(board, configuration)
         );
     }
 }
