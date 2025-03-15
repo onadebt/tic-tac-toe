@@ -25,8 +25,16 @@ public final class Main {
         var gamePhaseFactory = new GamePhaseFactory(ioProvider, elementSupplier);
 
         GamePhase gamePhase = gamePhaseFactory.getSetupPhase();
+
         while (gamePhase != null) {
+            ioProvider.writeString("Welcome to Tic Tac Toe!\n");
+            ioProvider.writeString("================================\n");
+
             gamePhase = gamePhase.execute();
+
         }
+
+        ioProvider.writeString("Game over!\n");
+        ioProvider.writeString("================================\n");
     }
 }
