@@ -6,10 +6,5 @@ public enum MoveStrategyEnum {
     /**
      * Single move strategy.
      */
-    SINGLE_MOVE,
-
-    /**
-     * Random invalid move for tests.
-     */
-    RANDOM_INVALID_MOVE
+    SINGLE_MOVE
 }
