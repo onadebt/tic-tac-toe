@@ -2,26 +2,39 @@ package cz.muni.fi.pv260.team4.tictactoe.movestrategy;
 
 import cz.muni.fi.pv260.team4.tictactoe.entity.MatchConfiguration;
 import cz.muni.fi.pv260.team4.tictactoe.interfaces.IOProvider;
-import cz.muni.fi.pv260.team4.tictactoe.movestrategy.enums.MoveStrategyEnum;
-import lombok.AllArgsConstructor;
 
-@AllArgsConstructor
+import java.util.ArrayList;
+import java.util.List;
+
 public final class StrategyFactory {
-    private final IOProvider ioProvider;
-    private final MatchConfiguration configuration;
-
+    private final List<MoveStrategy<?>> moveStrategyList = new ArrayList<>();
 
     /**
-     * Choose strategy based on the move type.
+     * StrategyFactory constructor.
      *
-     * @param moveType move type
+     * @param ioProvider          IOProvider
+     * @param matchConfiguration  MatchConfiguration
+     */
+    public StrategyFactory(final IOProvider ioProvider, final MatchConfiguration matchConfiguration) {
+        moveStrategyList.add(new SingleMoveStrategy(ioProvider, matchConfiguration));
+    }
+
+    /**
+     * Get list of all available move strategies.
+     *
+     * @return List of MoveStrategy
+     */
+    public List<MoveStrategy<?>> getMoveStrategyList() {
+        return moveStrategyList;
+    }
+
+    /**
+     * Choose strategy based on the user input.
+     *
+     * @param strategy move type
      * @return MoveStrategy
      */
-    public <T> MoveStrategy<T> chooseStrategy(final MoveStrategyEnum moveType) {
-        return switch (moveType) {
-            case SINGLE_MOVE -> (MoveStrategy<T>) new SingleMoveStrategy(ioProvider, configuration);
-
-            default -> throw new IllegalArgumentException("Invalid move type, please choose another one");
-        };
+    public MoveStrategy<?> chooseStrategy(final int strategy) {
+        return moveStrategyList.get(strategy - 1);
     }
 }
