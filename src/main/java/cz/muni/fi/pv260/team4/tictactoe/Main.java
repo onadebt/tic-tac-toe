@@ -2,14 +2,13 @@ package cz.muni.fi.pv260.team4.tictactoe;
 
 import cz.muni.fi.pv260.team4.tictactoe.board.BoardFactory;
 import cz.muni.fi.pv260.team4.tictactoe.element.AlphabeticElementSupplier;
-import cz.muni.fi.pv260.team4.tictactoe.entity.MatchConfiguration;
 import cz.muni.fi.pv260.team4.tictactoe.evaluator.WinningPositionEvaluator;
 import cz.muni.fi.pv260.team4.tictactoe.infrastructure.TerminalBoardDisplay;
 import cz.muni.fi.pv260.team4.tictactoe.infrastructure.TerminalIOProvider;
 import cz.muni.fi.pv260.team4.tictactoe.movestrategy.StrategyFactory;
 import cz.muni.fi.pv260.team4.tictactoe.phase.GamePhase;
 import cz.muni.fi.pv260.team4.tictactoe.phase.GamePhaseFactory;
-import org.jetbrains.annotations.NotNull;
+import cz.muni.fi.pv260.team4.tictactoe.phase.MatchConfigurationGenerator;
 
 public final class Main {
     private Main() {
@@ -26,9 +25,8 @@ public final class Main {
 
     private static void runGame() {
         var ioProvider = new TerminalIOProvider();
-        var gamePhaseFactory = getGamePhaseFactory(ioProvider);
 
-        GamePhase gamePhase = gamePhaseFactory.getSetupPhase();
+        GamePhase gamePhase = createInitialGamePhase(ioProvider);
 
         ioProvider.writeString("Welcome to Tic Tac Toe!\n");
         ioProvider.writeString("================================\n");
@@ -41,33 +39,24 @@ public final class Main {
         ioProvider.writeString("================================\n");
     }
 
-    private static final int DEFAULT_PLAYERS_COUNT = 2;
-    private static final int DEFAULT_BOARD_WIDTH = 3;
-    private static final int DEFAULT_BOARD_HEIGHT = 3;
-    private static final int DEFAULT_WIN_SEQUENCE = 3;
-
-    @NotNull
-    private static GamePhaseFactory getGamePhaseFactory(final TerminalIOProvider ioProvider) {
+    private static GamePhase createInitialGamePhase(final TerminalIOProvider ioProvider) {
         var elementSupplier = new AlphabeticElementSupplier();
         var boardFactory = new BoardFactory();
         var boardDisplay = new TerminalBoardDisplay(ioProvider);
-        var matchConfiguration = new MatchConfiguration(
-                DEFAULT_PLAYERS_COUNT,
-                DEFAULT_BOARD_WIDTH,
-                DEFAULT_BOARD_HEIGHT,
-                DEFAULT_WIN_SEQUENCE
-        );
-        var board = boardFactory.createEmptyBoard(matchConfiguration, elementSupplier);
-        var strategyFactory = new StrategyFactory(ioProvider, matchConfiguration);
-        var winningPositionEvaluator = new WinningPositionEvaluator(board, matchConfiguration);
+        var configuration = new MatchConfigurationGenerator(ioProvider, elementSupplier).createMatchConfiguration();
+        var strategyFactory = new StrategyFactory(ioProvider, configuration);
+        var board = boardFactory.createEmptyBoard(configuration, elementSupplier);
+        var winningPositionEvaluator = new WinningPositionEvaluator(board, configuration);
 
-        return new GamePhaseFactory(
+        var gamePhaseFactory = new GamePhaseFactory(
                 ioProvider,
                 elementSupplier,
                 boardDisplay,
-                matchConfiguration,
+                configuration,
                 board,
                 strategyFactory,
                 winningPositionEvaluator);
+
+        return gamePhaseFactory.getMatchPhase();
     }
 }
