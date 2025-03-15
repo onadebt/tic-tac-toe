@@ -1,23 +1,23 @@
 package cz.muni.fi.pv260.team4.tictactoe.phase;
 
 import cz.muni.fi.pv260.team4.tictactoe.board.Board;
-import cz.muni.fi.pv260.team4.tictactoe.board.BoardFactory;
 import cz.muni.fi.pv260.team4.tictactoe.element.ElementSupplier;
 import cz.muni.fi.pv260.team4.tictactoe.entity.MatchConfiguration;
 import cz.muni.fi.pv260.team4.tictactoe.evaluator.WinningPositionEvaluator;
-import cz.muni.fi.pv260.team4.tictactoe.infrastructure.TerminalBoardDisplay;
 import cz.muni.fi.pv260.team4.tictactoe.interfaces.BoardDisplay;
 import cz.muni.fi.pv260.team4.tictactoe.interfaces.IOProvider;
 import cz.muni.fi.pv260.team4.tictactoe.movestrategy.StrategyFactory;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 public class GamePhaseFactory {
     private final IOProvider ioProvider;
     private final ElementSupplier elementSupplier;
-    private final BoardFactory boardFactory;
     private final BoardDisplay boardDisplay;
+    private final MatchConfiguration matchConfiguration;
+    private final Board board;
+    private final StrategyFactory strategyFactory;
+    private final WinningPositionEvaluator winningPositionEvaluator;
 
     /**
      * Construct setup phase.
@@ -25,28 +25,23 @@ public class GamePhaseFactory {
      * @return setup game phase
      */
     public GamePhase getSetupPhase() {
-        return new SetupPhase(ioProvider, this, elementSupplier);
+        return new SetupPhase(ioProvider, this, elementSupplier, matchConfiguration);
     }
 
     /**
      * Construct match phase.
      *
-     * @param configuration   Configuration of game match
-     * @param supplier Element supplier for the board
      * @return match game phase
      */
-    public GamePhase getMatchPhase(final MatchConfiguration configuration, final ElementSupplier supplier) {
-        Board board = boardFactory.createEmptyBoard(configuration, supplier);
-        StrategyFactory strategyFactory = new StrategyFactory(ioProvider, configuration);
-
+    public GamePhase getMatchPhase() {
         return new MatchPhase(
                 ioProvider,
-                configuration,
+                matchConfiguration,
                 board,
                 strategyFactory,
                 boardDisplay,
-                supplier,
-                new WinningPositionEvaluator(board, configuration)
+                elementSupplier,
+                winningPositionEvaluator
         );
     }
 }
