@@ -28,7 +28,7 @@ public final class TerminalBoardDisplay implements BoardDisplay {
         boardRepresentation.append(" ".repeat(rowIdentifierLength)).append(" "); // Space for row identifiers
 
         for (int col = 0; col < cols; col++) {
-            boardRepresentation.append((char) ('A' + col));
+            boardRepresentation.append(col + 1);
             if (col < cols - 1) {
                 boardRepresentation.append("   ");
             }
