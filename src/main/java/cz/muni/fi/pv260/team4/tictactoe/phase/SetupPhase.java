@@ -43,13 +43,11 @@ public final class SetupPhase implements GamePhase {
                 new WinningSequenceLengthValidator(boardWidth, boardHeight)
         );
 
-        return gamePhaseFactory.getMatchPhase(
-                new MatchConfiguration(
-                        playerCount,
-                        boardWidth,
-                        boardHeight,
-                        lengthOfWinningSequence
-                ), elementSupplier
-        );
+        matchConfiguration.setBoardHeight(boardHeight);
+        matchConfiguration.setBoardWidth(boardWidth);
+        matchConfiguration.setPlayerCount(playerCount);
+        matchConfiguration.setWinningSequenceLength(lengthOfWinningSequence);
+
+        return gamePhaseFactory.getMatchPhase();
     }
 }

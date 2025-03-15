@@ -13,8 +13,8 @@ public final class TerminalBoardDisplay implements BoardDisplay {
     public void displayBoard(final Board board) {
         StringBuilder boardRepresentation = new StringBuilder();
 
-        long rows = board.getMatchConfiguration().boardHeight();
-        long cols = board.getMatchConfiguration().boardWidth();
+        long rows = board.getMatchConfiguration().getBoardHeight();
+        long cols = board.getMatchConfiguration().getBoardWidth();
         int rowIdentifierLength = String.valueOf(rows).length() + 1;
 
         appendColumnIdentifiers(boardRepresentation, cols, rowIdentifierLength);
