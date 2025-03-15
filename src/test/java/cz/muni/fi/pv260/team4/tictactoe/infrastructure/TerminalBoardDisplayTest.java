@@ -33,7 +33,7 @@ class TerminalBoardDisplayTest {
         Board board = new BoardFactory().createEmptyBoard(matchConfig, new AlphabeticElementSupplier());
 
         String expectedOutput = """
-                   A   B   C
+                   1   2   3
                 1    |   |\s\s
                   ---+---+---
                 2    |   |\s\s
@@ -63,7 +63,7 @@ class TerminalBoardDisplayTest {
         board.setCell(2, 2, 'O');
 
         String expectedOutput = """
-                   A   B   C
+                   1   2   3
                 1  X |   |\s\s
                   ---+---+---
                 2  O | X | X

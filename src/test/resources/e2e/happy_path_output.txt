@@ -1,0 +1,98 @@
+? How many players [default: 2]: ? Width of the board [default: 3]: ? Height of the board [default: 3]: ? Length of the winning sequence [default: 3]: Welcome to Tic Tac Toe!
+
+================================
+
+Player 1 turn
+
+? Choose strategy:
+1 - Single Move
+:    1   2   3
+1    |   |  
+  ---+---+---
+2    |   |  
+  ---+---+---
+3    |   |  
+
+? Enter row: : ? Enter column: :    1   2   3
+1  a |   |  
+  ---+---+---
+2    |   |  
+  ---+---+---
+3    |   |  
+
+Player 2 turn
+
+? Choose strategy:
+1 - Single Move
+:    1   2   3
+1  a |   |  
+  ---+---+---
+2    |   |  
+  ---+---+---
+3    |   |  
+
+? Enter row: : ? Enter column: :    1   2   3
+1  a |   |  
+  ---+---+---
+2  b |   |  
+  ---+---+---
+3    |   |  
+
+Player 1 turn
+
+? Choose strategy:
+1 - Single Move
+:    1   2   3
+1  a |   |  
+  ---+---+---
+2  b |   |  
+  ---+---+---
+3    |   |  
+
+? Enter row: : ? Enter column: :    1   2   3
+1  a | a |  
+  ---+---+---
+2  b |   |  
+  ---+---+---
+3    |   |  
+
+Player 2 turn
+
+? Choose strategy:
+1 - Single Move
+:    1   2   3
+1  a | a |  
+  ---+---+---
+2  b |   |  
+  ---+---+---
+3    |   |  
+
+? Enter row: : ? Enter column: :    1   2   3
+1  a | a |  
+  ---+---+---
+2  b |   |  
+  ---+---+---
+3  b |   |  
+
+Player 1 turn
+
+? Choose strategy:
+1 - Single Move
+:    1   2   3
+1  a | a |  
+  ---+---+---
+2  b |   |  
+  ---+---+---
+3  b |   |  
+
+? Enter row: : ? Enter column: :    1   2   3
+1  a | a | a
+  ---+---+---
+2  b |   |  
+  ---+---+---
+3  b |   |  
+
+Game over!
+
+================================
+
