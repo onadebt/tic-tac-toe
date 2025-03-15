@@ -10,7 +10,9 @@ import cz.muni.fi.pv260.team4.tictactoe.movestrategy.MoveStrategy;
 import cz.muni.fi.pv260.team4.tictactoe.movestrategy.StrategyFactory;
 import cz.muni.fi.pv260.team4.tictactoe.movestrategy.enums.MoveStrategyEnum;
 import cz.muni.fi.pv260.team4.tictactoe.validators.StrategyValidator;
+import lombok.RequiredArgsConstructor;
 
+@RequiredArgsConstructor
 public final class MatchPhase implements GamePhase {
     private final IOProvider ioProvider;
     private final MatchConfiguration matchConfiguration;
@@ -19,31 +21,6 @@ public final class MatchPhase implements GamePhase {
     private final BoardDisplay boardDisplay;
     private final ElementSupplier elementSupplier;
     private final WinningPositionEvaluator evaluator;
-
-    /**
-     * Constructor for MatchPhase.
-     *
-     * @param provider IOProvider
-     * @param configuration Configuration of game match
-     * @param gameBoard Board
-     * @param factory Strategy factory
-     * @param display Board display
-     * @param supplier Element supplier
-     */
-    public MatchPhase(final IOProvider provider,
-                      final MatchConfiguration configuration,
-                      final Board gameBoard,
-                      final StrategyFactory factory,
-                      final BoardDisplay display,
-                      final ElementSupplier supplier) {
-        this.ioProvider = provider;
-        this.matchConfiguration = configuration;
-        this.board = gameBoard;
-        this.strategyFactory = factory;
-        this.boardDisplay = display;
-        this.elementSupplier = supplier;
-        this.evaluator = new WinningPositionEvaluator(gameBoard, configuration);
-    }
 
     private int currentPlayerIndex = 0;
 
@@ -54,7 +31,7 @@ public final class MatchPhase implements GamePhase {
             MoveStrategy moveStrategy = selectStrategy();
             boardDisplay.displayBoard(board);
             executePlayerTurn(moveStrategy);
-            currentPlayerIndex = (int) ((currentPlayerIndex + 1) % matchConfiguration.playerCount());
+            advancePlayer();
         }
         return null;
     }
@@ -65,8 +42,8 @@ public final class MatchPhase implements GamePhase {
             sb.append(strategy.ordinal() + 1).append(" - ").append(strategy).append("\n");
         }
 
-        long strategyIndex = ioProvider.readLong(sb.toString(), new StrategyValidator());
-        return strategyFactory.chooseStrategy(MoveStrategyEnum.values()[(int) strategyIndex - 1]);
+        int strategyIndex = ioProvider.readInt(sb.toString(), new StrategyValidator());
+        return strategyFactory.chooseStrategy(MoveStrategyEnum.values()[strategyIndex - 1]);
     }
 
     private void executePlayerTurn(final MoveStrategy moveStrategy) {
@@ -75,6 +52,9 @@ public final class MatchPhase implements GamePhase {
         boardDisplay.displayBoard(board);
     }
 
+    private void advancePlayer() {
+        currentPlayerIndex = (currentPlayerIndex + 1) % matchConfiguration.playerCount();
+    }
 
     private boolean isGameOver() {
         return evaluator.getWinner().isPresent();
