@@ -16,22 +16,22 @@ class StrategyValidatorTest {
 
     @Test
     void shouldAllowValidStrategy() {
-        assertTrue(validator.validate(1L).isEmpty());
-        assertTrue(validator.validate((long) MoveStrategyEnum.values().length).isEmpty());
+        assertTrue(validator.validate(1).isEmpty());
+        assertTrue(validator.validate(MoveStrategyEnum.values().length).isEmpty());
     }
 
     @Test
     void shouldRejectNegativeStrategy() {
-        assertTrue(validator.validate(-1L).isPresent());
+        assertTrue(validator.validate(1).isPresent());
     }
 
     @Test
     void shouldRejectZeroStrategy() {
-        assertTrue(validator.validate(0L).isPresent());
+        assertTrue(validator.validate(0).isPresent());
     }
 
     @Test
     void shouldRejectStrategyAboveMax() {
-        assertTrue(validator.validate((long) MoveStrategyEnum.values().length + 1).isPresent());
+        assertTrue(validator.validate(MoveStrategyEnum.values().length + 1).isPresent());
     }
 }

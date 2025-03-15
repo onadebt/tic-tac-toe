@@ -27,24 +27,24 @@ class SingleMoveStrategyTest {
 
     @Test
     void testExecuteMove() {
-        when(ioProvider.readLong(anyString(), any())).thenReturn(1L, 1L);
+        when(ioProvider.readInt(anyString(), any())).thenReturn(1, 1);
         when(board.isCellEmpty(0, 0)).thenReturn(true);
 
         singleMoveStrategy.executeMove(board, 'X');
 
-        verify(ioProvider, times(2)).readLong(anyString(), any());
+        verify(ioProvider, times(2)).readInt(anyString(), any());
         verify(board).setCell(0, 0, 'X');
     }
 
     @Test
     void testExecuteMoveCellTaken() {
-        when(ioProvider.readLong(anyString(), any())).thenReturn(1L, 1L, 2L, 2L);
+        when(ioProvider.readInt(anyString(), any())).thenReturn(1, 1, 2, 2);
         when(board.isCellEmpty(0, 0)).thenReturn(false);
         when(board.isCellEmpty(1, 1)).thenReturn(true);
 
         singleMoveStrategy.executeMove(board, 'X');
 
-        verify(ioProvider, times(4)).readLong(anyString(), any());
+        verify(ioProvider, times(4)).readInt(anyString(), any());
         verify(board, never()).setCell(0, 0, 'X');
         verify(board).setCell(1, 1, 'X');
     }

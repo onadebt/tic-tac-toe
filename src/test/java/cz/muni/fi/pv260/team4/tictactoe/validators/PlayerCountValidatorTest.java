@@ -34,6 +34,6 @@ class PlayerCountValidatorTest {
     @Test
     void shouldRejectAboveMaximalPlayerCount() {
         when(elementSupplier.getMaxOrder()).thenReturn(2);
-        assertTrue(validator.validate(3L).isPresent());
+        assertTrue(validator.validate(3).isPresent());
     }
 }

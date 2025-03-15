@@ -21,7 +21,7 @@ class TerminalIOProviderTest extends StdStreamTest {
         System.setOut(new PrintStream(output));
 
         var ioProvider = new TerminalIOProvider();
-        var readValue = ioProvider.readLong("test", (_1) -> Optional.empty());
+        var readValue = ioProvider.readInt("test", (_1) -> Optional.empty());
 
         assertEquals(5L, readValue);
         assertTrue(output.toString().contains("test"));
@@ -36,7 +36,7 @@ class TerminalIOProviderTest extends StdStreamTest {
         System.setOut(new PrintStream(output));
 
         var ioProvider = new TerminalIOProvider();
-        var readValue = ioProvider.readLong("test", 69L, (_1) -> Optional.empty());
+        var readValue = ioProvider.readInt("test", 69, (_1) -> Optional.empty());
 
         assertEquals(42L, readValue);
         assertTrue(output.toString().contains("test"));
@@ -52,7 +52,7 @@ class TerminalIOProviderTest extends StdStreamTest {
         System.setOut(new PrintStream(output));
 
         var ioProvider = new TerminalIOProvider();
-        var readValue = ioProvider.readLong("test", 69L, (_1) -> Optional.empty());
+        var readValue = ioProvider.readInt("test", 69, (_1) -> Optional.empty());
 
         assertEquals(69L, readValue);
         assertTrue(output.toString().contains("test"));
@@ -71,7 +71,7 @@ class TerminalIOProviderTest extends StdStreamTest {
         System.setErr(new PrintStream(error));
 
         var ioProvider = new TerminalIOProvider();
-        var readValue = ioProvider.readLong("test", 69L, (_1) -> Optional.empty());
+        var readValue = ioProvider.readInt("test", 69, (_1) -> Optional.empty());
 
         assertEquals(1L, readValue);
         assertTrue(output.toString().contains("test"));
@@ -90,7 +90,7 @@ class TerminalIOProviderTest extends StdStreamTest {
         System.setErr(new PrintStream(error));
 
         var ioProvider = new TerminalIOProvider();
-        var readValue = ioProvider.readLong("test", 69L, (n) -> {
+        var readValue = ioProvider.readInt("test", 69, (n) -> {
             if (n == 1L) {
                 return Optional.of("bad");
             }

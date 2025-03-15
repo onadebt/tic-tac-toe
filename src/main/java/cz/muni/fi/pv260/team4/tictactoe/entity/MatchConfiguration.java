@@ -9,9 +9,9 @@ package cz.muni.fi.pv260.team4.tictactoe.entity;
  * @param winningSequenceLength minimum length of same player sequence needed to win
  */
 public record MatchConfiguration(
-        long playerCount,
-        long boardWidth,
-        long boardHeight,
-        long winningSequenceLength
+        int playerCount,
+        int boardWidth,
+        int boardHeight,
+        int winningSequenceLength
 ) {
 }

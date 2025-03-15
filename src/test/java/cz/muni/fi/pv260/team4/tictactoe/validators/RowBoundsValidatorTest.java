@@ -9,19 +9,19 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @ExtendWith(MockitoExtension.class)
 class RowBoundsValidatorTest {
-    private static final long MAX_ROWS = 3L;
+    private static final int MAX_ROWS = 3;
 
     @InjectMocks
     private RowBoundsValidator validator = new RowBoundsValidator(MAX_ROWS);
 
     @Test
     void shouldAllowValidRow() {
-        assertTrue(validator.validate(1L).isEmpty());
+        assertTrue(validator.validate(1).isEmpty());
     }
 
     @Test
     void shouldRejectNegativeRow() {
-        assertTrue(validator.validate(-1L).isPresent());
+        assertTrue(validator.validate(-1).isPresent());
     }
 
     @Test

@@ -1,16 +1,16 @@
 package cz.muni.fi.pv260.team4.tictactoe.movestrategy;
 
+import cz.muni.fi.pv260.team4.tictactoe.entity.MatchConfiguration;
 import cz.muni.fi.pv260.team4.tictactoe.interfaces.IOProvider;
 import cz.muni.fi.pv260.team4.tictactoe.validators.ColumnBoundsValidator;
 import cz.muni.fi.pv260.team4.tictactoe.validators.RowBoundsValidator;
+import kotlin.Pair;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
@@ -22,23 +22,26 @@ class PositionGathererTest {
     @Mock
     private IOProvider ioProvider;
 
+    @Mock
+    private MatchConfiguration configuration;
+
     @InjectMocks
     private PositionGatherer positionGatherer;
 
     @BeforeEach
     void setUp() {
-        positionGatherer = new PositionGatherer(ioProvider);
+        positionGatherer = new PositionGatherer(ioProvider, configuration);
     }
 
     @Test
     void testGatherMoveParameters() {
-        when(ioProvider.readLong(anyString(), any(RowBoundsValidator.class))).thenReturn(1L);
-        when(ioProvider.readLong(anyString(), any(ColumnBoundsValidator.class))).thenReturn(2L);
+        when(ioProvider.readInt(anyString(), any(RowBoundsValidator.class))).thenReturn(1);
+        when(ioProvider.readInt(anyString(), any(ColumnBoundsValidator.class))).thenReturn(2);
 
-        List<Long> moveParameters = positionGatherer.gatherMoveParameters();
+        Pair<Integer, Integer> moveParameters = positionGatherer.gatherMoveParameters();
 
-        assertEquals(1L, moveParameters.get(0));
-        assertEquals(2L, moveParameters.get(1));
+        assertEquals(1, moveParameters.component1());
+        assertEquals(2, moveParameters.component2());
     }
 
     //todo: add more tests for wrong input

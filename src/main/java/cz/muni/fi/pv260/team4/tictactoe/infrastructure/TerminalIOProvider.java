@@ -11,16 +11,16 @@ public final class TerminalIOProvider implements IOProvider {
     private final Scanner scanner = new Scanner(System.in, StandardCharsets.UTF_8);
 
     @Override
-    public long readLong(
+    public int readInt(
             final String prompt,
-            final InputValidator<Long> validator
+            final InputValidator<Integer> validator
     ) {
-        return readLong(prompt, null, validator);
+        return readInt(prompt, null, validator);
     }
 
     @Override
-    public long readLong(final String prompt, final Long defaultValue, final InputValidator<Long> validator) {
-        long result;
+    public int readInt(final String prompt, final Integer defaultValue, final InputValidator<Integer> validator) {
+        int result;
         Optional<String> errorMessage;
 
         do {
@@ -31,7 +31,7 @@ public final class TerminalIOProvider implements IOProvider {
             }
 
             try {
-                result = Long.parseLong(userInput);
+                result = Integer.parseInt(userInput);
             } catch (NumberFormatException e) {
                 System.err.println("Invalid number: " + userInput);
                 continue;
