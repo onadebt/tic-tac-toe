@@ -33,7 +33,7 @@ public final class TerminalBoardDisplay implements BoardDisplay {
                 boardRepresentation.append("   ");
             }
         }
-        boardRepresentation.append("\n");
+        boardRepresentation.append(System.lineSeparator());
     }
 
     private void appendBoardRows(final StringBuilder boardRepresentation, final Board board,
@@ -47,7 +47,7 @@ public final class TerminalBoardDisplay implements BoardDisplay {
                     boardRepresentation.append(" |");
                 }
             }
-            boardRepresentation.append("\n");
+            boardRepresentation.append(System.lineSeparator());
 
             if (row < rows - 1) {
                 appendRowSeparator(boardRepresentation, cols, rowIdentifierLength);
@@ -64,6 +64,6 @@ public final class TerminalBoardDisplay implements BoardDisplay {
                 boardRepresentation.append("+");
             }
         }
-        boardRepresentation.append("\n");
+        boardRepresentation.append(System.lineSeparator());
     }
 }

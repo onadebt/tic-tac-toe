@@ -43,4 +43,10 @@ public interface IOProvider {
      * @param value text to display
      */
     void writeString(String value);
+
+
+    /**
+     * Prints a new line. Created to make the provider platform independent.
+     */
+    void newline();
 }

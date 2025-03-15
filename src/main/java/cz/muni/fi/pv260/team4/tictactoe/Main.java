@@ -28,15 +28,19 @@ public final class Main {
 
         GamePhase gamePhase = createInitialGamePhase(ioProvider);
 
-        ioProvider.writeString("Welcome to Tic Tac Toe!\n");
-        ioProvider.writeString("================================\n");
+        ioProvider.writeString("Welcome to Tic Tac Toe!");
+        ioProvider.newline();
+        ioProvider.writeString("================================");
+        ioProvider.newline();
 
         while (gamePhase != null) {
             gamePhase = gamePhase.execute();
         }
 
-        ioProvider.writeString("Game over!\n");
-        ioProvider.writeString("================================\n");
+        ioProvider.writeString("Game over!");
+        ioProvider.newline();
+        ioProvider.writeString("================================");
+        ioProvider.newline();
     }
 
     private static GamePhase createInitialGamePhase(final TerminalIOProvider ioProvider) {

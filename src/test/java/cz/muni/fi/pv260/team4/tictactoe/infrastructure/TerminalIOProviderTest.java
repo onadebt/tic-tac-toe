@@ -14,7 +14,7 @@ class TerminalIOProviderTest extends StdStreamTest {
 
     @Test
     void shouldReturnLongOnInput() {
-        var input = "5\n";
+        var input = "5" + System.lineSeparator();
         System.setIn(new ByteArrayInputStream(input.getBytes()));
 
         var output = new ByteArrayOutputStream();
@@ -29,7 +29,7 @@ class TerminalIOProviderTest extends StdStreamTest {
 
     @Test
     void shouldReturnLongOnInputAndDisplayDefaultValue() {
-        var input = "42\n";
+        var input = "42" + System.lineSeparator();
         System.setIn(new ByteArrayInputStream(input.getBytes()));
 
         var output = new ByteArrayOutputStream();
@@ -45,7 +45,7 @@ class TerminalIOProviderTest extends StdStreamTest {
 
     @Test
     void shouldReturnDefaultValueOnEmptyInput() {
-        var input = "\n";
+        var input = System.lineSeparator();
         System.setIn(new ByteArrayInputStream(input.getBytes()));
 
         var output = new ByteArrayOutputStream();
@@ -61,7 +61,7 @@ class TerminalIOProviderTest extends StdStreamTest {
 
     @Test
     void shouldShowErrorMessageOnNonNumberInput() {
-        var input = "a\n1\n";
+        var input = "a%s1%s".formatted(System.lineSeparator(), System.lineSeparator());
         System.setIn(new ByteArrayInputStream(input.getBytes()));
 
         var output = new ByteArrayOutputStream();
@@ -80,7 +80,7 @@ class TerminalIOProviderTest extends StdStreamTest {
 
     @Test
     void shouldShowErrorMessageOnLongValidatorFailureInput() {
-        var input = "1\n2\n";
+        var input = "1%s2%s".formatted(System.lineSeparator(), System.lineSeparator());
         System.setIn(new ByteArrayInputStream(input.getBytes()));
 
         var output = new ByteArrayOutputStream();
@@ -104,7 +104,7 @@ class TerminalIOProviderTest extends StdStreamTest {
 
     @Test
     void shouldReturnStringOnInput() {
-        var input = "abc\n";
+        var input = "abc%s".formatted(System.lineSeparator());
         System.setIn(new ByteArrayInputStream(input.getBytes()));
 
         var output = new ByteArrayOutputStream();
@@ -119,7 +119,7 @@ class TerminalIOProviderTest extends StdStreamTest {
 
     @Test
     void shouldShowErrorMessageOnStringValidatorFailureInput() {
-        var input = "a\nb\n";
+        var input = "a%sb%s".formatted(System.lineSeparator(), System.lineSeparator());
         System.setIn(new ByteArrayInputStream(input.getBytes()));
 
         var output = new ByteArrayOutputStream();
