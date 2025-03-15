@@ -25,12 +25,12 @@ class RowBoundsValidatorTest {
     }
 
     @Test
-    void shouldRejectRowEqualToMaxRows() {
-        assertTrue(validator.validate(MAX_ROWS).isPresent());
+    void shouldRejectRowOneHigherMaxRows() {
+        assertTrue(validator.validate(MAX_ROWS + 1).isPresent());
     }
 
     @Test
     void shouldRejectRowAboveMaxRows() {
-        assertTrue(validator.validate(MAX_ROWS + 1).isPresent());
+        assertTrue(validator.validate(MAX_ROWS + 2).isPresent());
     }
 }

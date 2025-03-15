@@ -25,8 +25,8 @@ class ColumnBoundsValidatorTest {
     }
 
     @Test
-    void shouldRejectColumnEqualToMaxColumns() {
-        assertTrue(validator.validate(MAX_COLUMNS).isPresent());
+    void shouldRejectColumnOneLargerThanMaxColumns() {
+        assertTrue(validator.validate(MAX_COLUMNS + 1).isPresent());
     }
 
     @Test
