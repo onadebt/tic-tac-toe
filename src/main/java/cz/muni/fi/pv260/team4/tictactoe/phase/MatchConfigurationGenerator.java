@@ -11,15 +11,17 @@ import cz.muni.fi.pv260.team4.tictactoe.validators.WinningSequenceLengthValidato
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
-public final class SetupPhase implements GamePhase {
+public final class MatchConfigurationGenerator {
     private final IOProvider ioProvider;
-    private final GamePhaseFactory gamePhaseFactory;
     private final ElementSupplier elementSupplier;
-    private final MatchConfiguration matchConfiguration;
 
 
-    @Override
-    public GamePhase execute() {
+    /**
+     * Creates a new match configuration by prompting the user for required settings.
+     *
+     * @return a {@link MatchConfiguration} instance containing the collected settings.
+     */
+    public MatchConfiguration createMatchConfiguration() {
         var playerCount = ioProvider.readInt(
                 "How many players",
                 Const.MINIMAL_PLAYER_COUNT,
@@ -44,11 +46,6 @@ public final class SetupPhase implements GamePhase {
                 new WinningSequenceLengthValidator(boardWidth, boardHeight)
         );
 
-        matchConfiguration.setBoardHeight(boardHeight);
-        matchConfiguration.setBoardWidth(boardWidth);
-        matchConfiguration.setPlayerCount(playerCount);
-        matchConfiguration.setWinningSequenceLength(lengthOfWinningSequence);
-
-        return gamePhaseFactory.getMatchPhase();
+        return new MatchConfiguration(playerCount, boardWidth, boardHeight, lengthOfWinningSequence);
     }
 }

@@ -20,15 +20,6 @@ public class GamePhaseFactory {
     private final WinningPositionEvaluator winningPositionEvaluator;
 
     /**
-     * Construct setup phase.
-     *
-     * @return setup game phase
-     */
-    public GamePhase getSetupPhase() {
-        return new SetupPhase(ioProvider, this, elementSupplier, matchConfiguration);
-    }
-
-    /**
      * Construct match phase.
      *
      * @return match game phase
