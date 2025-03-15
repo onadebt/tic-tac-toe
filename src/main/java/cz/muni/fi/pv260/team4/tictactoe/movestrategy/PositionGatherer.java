@@ -19,8 +19,13 @@ public class PositionGatherer implements MoveParameterGatherer<Pair<Integer, Int
      */
     @Override
     public Pair<Integer, Integer> gatherMoveParameters() {
-        int row = this.ioProvider.readInt("Enter row: ", new RowBoundsValidator(configuration.boardHeight()));
-        int column = this.ioProvider.readInt("Enter column: ", new ColumnBoundsValidator(configuration.boardWidth()));
-        return new Pair<>(row - 1, column - 1);
+        int row = this.ioProvider.readInt(
+                "Enter row: ", new RowBoundsValidator(configuration.getBoardHeight())
+        );
+
+        int column = this.ioProvider.readInt(
+                "Enter column: ", new ColumnBoundsValidator(configuration.getBoardWidth())
+        );
+        return new Pair<>(row, column);
     }
 }
