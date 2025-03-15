@@ -1,14 +1,15 @@
 package cz.muni.fi.pv260.team4.tictactoe.movestrategy;
 
 import cz.muni.fi.pv260.team4.tictactoe.board.Board;
+import cz.muni.fi.pv260.team4.tictactoe.entity.MatchConfiguration;
 import cz.muni.fi.pv260.team4.tictactoe.interfaces.IOProvider;
+import kotlin.Pair;
 import lombok.AllArgsConstructor;
 
-import java.util.List;
-
 @AllArgsConstructor
-public final class SingleMoveStrategy implements MoveStrategy {
+public final class SingleMoveStrategy implements MoveStrategy<Pair<Integer, Integer>> {
     private final IOProvider ioProvider;
+    private final MatchConfiguration configuration;
 
     /**
      * Execute the move.
@@ -18,14 +19,15 @@ public final class SingleMoveStrategy implements MoveStrategy {
      */
     @Override
     public void executeMove(final Board board, final Character player) {
-        List<Long> positions = getMoveParameterGatherer().gatherMoveParameters();
-        int row = positions.get(0).intValue() - 1;
-        int col = positions.get(1).intValue() - 1;
+        Pair<Integer, Integer> positions = getMoveParameterGatherer().gatherMoveParameters();
+        int row = positions.component1();
+        int col = positions.component2();
 
-        if (!board.isCellEmpty(row, col)) {
-            ioProvider.writeString("This cell is already taken. Please choose another one.\n");
-            executeMove(board, player);
-            return;
+        while (!board.isCellEmpty(row, col)) {
+            System.err.println("This cell is already taken. Please choose another one.\n");
+            positions = getMoveParameterGatherer().gatherMoveParameters();
+            row = positions.component1();
+            col = positions.component2();
         }
 
         board.setCell(row, col, player);
@@ -37,7 +39,7 @@ public final class SingleMoveStrategy implements MoveStrategy {
      * @return MoveParameterGatherer
      */
     @Override
-    public MoveParameterGatherer getMoveParameterGatherer() {
-        return new PositionGatherer(ioProvider);
+    public MoveParameterGatherer<Pair<Integer, Integer>> getMoveParameterGatherer() {
+        return new PositionGatherer(ioProvider, configuration);
     }
 }

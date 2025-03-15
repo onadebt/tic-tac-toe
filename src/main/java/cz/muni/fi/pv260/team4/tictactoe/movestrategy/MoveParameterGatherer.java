@@ -1,13 +1,13 @@
 package cz.muni.fi.pv260.team4.tictactoe.movestrategy;
 
-import java.util.List;
-
-public interface MoveParameterGatherer {
+public interface MoveParameterGatherer<T> {
 
     /**
-     * Gather move parameters from user.
+     * Gather move parameters for different strategies.
+     * For example, for SingleMoveStrategy it gathers row and column as Pair<Integer, Integer>.
+     * For SwapNStrategy it gathers only one number, as it swaps N random cells' values.
      *
-     * @return list of move parameters
+     * @return move parameters
      */
-    List<Long> gatherMoveParameters();
+    T gatherMoveParameters();
 }

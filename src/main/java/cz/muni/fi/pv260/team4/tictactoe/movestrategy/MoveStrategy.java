@@ -2,20 +2,20 @@ package cz.muni.fi.pv260.team4.tictactoe.movestrategy;
 
 import cz.muni.fi.pv260.team4.tictactoe.board.Board;
 
-public interface MoveStrategy {
+public interface MoveStrategy<T> {
 
     /**
-     * Execute move.
+     * Executes the move on the board.
      *
-     * @param board  board
-     * @param player player
+     * @param board  board to be modified
+     * @param player player who is making the move
      */
     void executeMove(Board board, Character player);
 
     /**
-     * Get move parameter gatherer.
+     * Returns MoveParameterGatherer, which contains all needed parameters for the specific move strategy.
      *
-     * @return move parameter gatherer
+     * @return MoveParameterGatherer
      */
-    MoveParameterGatherer getMoveParameterGatherer();
+    MoveParameterGatherer<T> getMoveParameterGatherer();
 }
