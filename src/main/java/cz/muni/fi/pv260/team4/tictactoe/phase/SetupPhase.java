@@ -15,6 +15,7 @@ public final class SetupPhase implements GamePhase {
     private final IOProvider ioProvider;
     private final GamePhaseFactory gamePhaseFactory;
     private final ElementSupplier elementSupplier;
+    private final MatchConfiguration matchConfiguration;
 
 
     @Override
