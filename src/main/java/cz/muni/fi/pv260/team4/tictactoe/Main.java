@@ -36,11 +36,6 @@ public final class Main {
         while (gamePhase != null) {
             gamePhase = gamePhase.execute();
         }
-
-        ioProvider.writeString("Game over!");
-        ioProvider.newline();
-        ioProvider.writeString("================================");
-        ioProvider.newline();
     }
 
     private static GamePhase createInitialGamePhase(final TerminalIOProvider ioProvider) {
