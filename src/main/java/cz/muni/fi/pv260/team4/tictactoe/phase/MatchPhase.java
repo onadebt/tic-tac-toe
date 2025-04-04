@@ -35,7 +35,7 @@ public final class MatchPhase implements GamePhase {
             executePlayerTurn(moveStrategy);
             advancePlayer();
         }
-        return null;
+        return new EndPhase(ioProvider, evaluator);
     }
 
     private MoveStrategy<?> selectStrategy() {

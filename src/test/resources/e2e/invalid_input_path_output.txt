@@ -92,7 +92,6 @@ Player 1 turn
   ---+---+---
 3  a |   | b
 
-Game over!
-
 ================================
 
+Game over! WINNER: a
