@@ -1,5 +1,6 @@
 package cz.muni.fi.pv260.team4.tictactoe.phase;
 
+import cz.muni.fi.pv260.team4.tictactoe.GameState;
 import cz.muni.fi.pv260.team4.tictactoe.board.Board;
 import cz.muni.fi.pv260.team4.tictactoe.element.ElementSupplier;
 import cz.muni.fi.pv260.team4.tictactoe.entity.MatchConfiguration;
@@ -15,7 +16,7 @@ public class GamePhaseFactory {
     private final ElementSupplier elementSupplier;
     private final BoardDisplay boardDisplay;
     private final MatchConfiguration matchConfiguration;
-    private final Board board;
+    private final GameState gameState;
     private final StrategyFactory strategyFactory;
     private final WinningPositionEvaluator winningPositionEvaluator;
 
@@ -28,7 +29,7 @@ public class GamePhaseFactory {
         return new MatchPhase(
                 ioProvider,
                 matchConfiguration,
-                board,
+                gameState,
                 strategyFactory,
                 boardDisplay,
                 elementSupplier,
