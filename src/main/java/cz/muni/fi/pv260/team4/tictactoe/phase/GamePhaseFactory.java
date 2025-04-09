@@ -1,7 +1,6 @@
 package cz.muni.fi.pv260.team4.tictactoe.phase;
 
 import cz.muni.fi.pv260.team4.tictactoe.GameState;
-import cz.muni.fi.pv260.team4.tictactoe.board.Board;
 import cz.muni.fi.pv260.team4.tictactoe.element.ElementSupplier;
 import cz.muni.fi.pv260.team4.tictactoe.entity.MatchConfiguration;
 import cz.muni.fi.pv260.team4.tictactoe.evaluator.WinningPositionEvaluator;

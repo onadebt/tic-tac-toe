@@ -3,11 +3,19 @@ package cz.muni.fi.pv260.team4.tictactoe.movestrategy;
 import cz.muni.fi.pv260.team4.tictactoe.GameState;
 import cz.muni.fi.pv260.team4.tictactoe.entity.MatchConfiguration;
 import cz.muni.fi.pv260.team4.tictactoe.interfaces.IOProvider;
+import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Getter
 public final class StrategyFactory {
+    /**
+     * -- GETTER --
+     *  Get list of all available move strategies.
+     *
+     * @return List of MoveStrategy
+     */
     private final List<MoveStrategy<?>> moveStrategyList = new ArrayList<>();
 
     /**
@@ -19,15 +27,6 @@ public final class StrategyFactory {
     public StrategyFactory(final IOProvider ioProvider, final MatchConfiguration matchConfiguration, final GameState gameState) {
         moveStrategyList.add(new SingleMoveStrategy(ioProvider, matchConfiguration));
         moveStrategyList.add(new RollbackStrategy(ioProvider, gameState));
-    }
-
-    /**
-     * Get list of all available move strategies.
-     *
-     * @return List of MoveStrategy
-     */
-    public List<MoveStrategy<?>> getMoveStrategyList() {
-        return moveStrategyList;
     }
 
     /**

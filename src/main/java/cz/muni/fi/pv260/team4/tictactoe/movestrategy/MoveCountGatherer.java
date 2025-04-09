@@ -1,12 +1,8 @@
 package cz.muni.fi.pv260.team4.tictactoe.movestrategy;
 
 import cz.muni.fi.pv260.team4.tictactoe.GameState;
-import cz.muni.fi.pv260.team4.tictactoe.entity.MatchConfiguration;
 import cz.muni.fi.pv260.team4.tictactoe.interfaces.IOProvider;
-import cz.muni.fi.pv260.team4.tictactoe.validators.ColumnBoundsValidator;
 import cz.muni.fi.pv260.team4.tictactoe.validators.RollbackValidator;
-import cz.muni.fi.pv260.team4.tictactoe.validators.RowBoundsValidator;
-import kotlin.Pair;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor

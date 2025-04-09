@@ -1,10 +1,7 @@
 package cz.muni.fi.pv260.team4.tictactoe.movestrategy;
 
 import cz.muni.fi.pv260.team4.tictactoe.GameState;
-import cz.muni.fi.pv260.team4.tictactoe.board.Board;
-import cz.muni.fi.pv260.team4.tictactoe.entity.MatchConfiguration;
 import cz.muni.fi.pv260.team4.tictactoe.interfaces.IOProvider;
-import kotlin.Pair;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
