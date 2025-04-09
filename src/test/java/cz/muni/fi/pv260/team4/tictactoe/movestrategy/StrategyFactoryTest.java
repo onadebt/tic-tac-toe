@@ -1,5 +1,6 @@
 package cz.muni.fi.pv260.team4.tictactoe.movestrategy;
 
+import cz.muni.fi.pv260.team4.tictactoe.GameState;
 import cz.muni.fi.pv260.team4.tictactoe.entity.MatchConfiguration;
 import cz.muni.fi.pv260.team4.tictactoe.interfaces.IOProvider;
 import org.junit.jupiter.api.BeforeEach;
@@ -15,10 +16,13 @@ class StrategyFactoryTest {
     @Mock
     private MatchConfiguration configuration;
 
+    @Mock
+    private GameState gameState;
+
     @BeforeEach
     void setUp() {
         IOProvider ioProvider = mock(IOProvider.class);
-        strategyFactory = new StrategyFactory(ioProvider, configuration);
+        strategyFactory = new StrategyFactory(ioProvider, configuration, gameState);
     }
 
     @Test
