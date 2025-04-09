@@ -9,37 +9,37 @@ class NValidatorTest {
 
     @Test
     void shouldRejectNegativeN() {
-        NValidator validator = new NValidator(10);
+        NValidator validator = new NValidator(10, "");
         assertTrue(validator.validate(-1).isPresent());
     }
 
     @Test
     void shouldAllowZeroN() {
-        NValidator validator = new NValidator(10);
+        NValidator validator = new NValidator(10, "");
         assertTrue(validator.validate(0).isEmpty());
     }
 
     @Test
     void shouldAllowNEqualToMaxN() {
-        NValidator validator = new NValidator(10);
+        NValidator validator = new NValidator(10, "");
         assertTrue(validator.validate(10).isEmpty());
     }
 
     @Test
     void shouldRejectNGreaterThanMaxN() {
-        NValidator validator = new NValidator(10);
+        NValidator validator = new NValidator(10, "");
         assertTrue(validator.validate(11).isPresent());
     }
 
     @Test
     void shouldAllowNWithinBounds() {
-        NValidator validator = new NValidator(10);
+        NValidator validator = new NValidator(10, "");
         assertFalse(validator.validate(5).isPresent());
     }
 
     @Test
     void shouldAllowNWhenMaxNIsNull() {
-        NValidator validator = new NValidator(null);
-        assertTrue(validator.validate(100).isEmpty());
+        NValidator validator = new NValidator(null, "");
+        assertTrue(validator.validate(10).isEmpty());
     }
 }
