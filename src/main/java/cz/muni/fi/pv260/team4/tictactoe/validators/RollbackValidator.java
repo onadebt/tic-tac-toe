@@ -17,7 +17,7 @@ public final class RollbackValidator implements InputValidator<Integer> {
     public Optional<String> validate(final Integer numberOfMoves) {
         int maxMoves = historySize / 2;
 
-        if(numberOfMoves < 1) {
+        if (numberOfMoves < 1) {
             return Optional.of("Rollback requires at least one move");
         }
 

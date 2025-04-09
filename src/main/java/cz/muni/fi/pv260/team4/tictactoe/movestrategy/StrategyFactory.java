@@ -13,8 +13,6 @@ public final class StrategyFactory {
     /**
      * -- GETTER --
      *  Get list of all available move strategies.
-     *
-     * @return List of MoveStrategy
      */
     private final List<MoveStrategy<?>> moveStrategyList = new ArrayList<>();
 
@@ -23,8 +21,10 @@ public final class StrategyFactory {
      *
      * @param ioProvider          IOProvider
      * @param matchConfiguration  MatchConfiguration
+     * @param gameState           GameState
      */
-    public StrategyFactory(final IOProvider ioProvider, final MatchConfiguration matchConfiguration, final GameState gameState) {
+    public StrategyFactory(final IOProvider ioProvider, final MatchConfiguration matchConfiguration,
+                           final GameState gameState) {
         moveStrategyList.add(new SingleMoveStrategy(ioProvider, matchConfiguration));
         moveStrategyList.add(new RollbackStrategy(ioProvider, gameState));
     }

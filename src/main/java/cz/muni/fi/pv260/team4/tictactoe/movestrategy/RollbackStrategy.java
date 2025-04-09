@@ -15,7 +15,7 @@ public final class RollbackStrategy implements MoveStrategy<Integer> {
      * @param player Character
      */
     @Override
-    public void executeMove(final GameState gameState, final Character player) {
+    public void executeMove(final GameState ignored, final Character player) {
         int rollbackAmount = getMoveParameterGatherer().gatherMoveParameters();
 
         // +1 because we also have to revert the current rollback move
