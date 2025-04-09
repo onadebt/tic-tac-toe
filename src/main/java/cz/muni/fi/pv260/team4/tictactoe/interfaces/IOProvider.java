@@ -55,5 +55,4 @@ public interface IOProvider {
      * Prints a new line. Created to make the provider platform independent.
      */
     void newline();
-
 }
