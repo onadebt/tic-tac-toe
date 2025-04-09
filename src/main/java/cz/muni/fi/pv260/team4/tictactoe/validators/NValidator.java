@@ -22,8 +22,8 @@ public final class NValidator implements InputValidator<Integer> {
 
     @Override
     public Optional<String> validate(final Integer n) {
-        if (n < 0) {
-            return Optional.of(name + " must be greater than 0");
+        if (n <= 0) {
+            return Optional.of(name + " must at least 1");
         }
         if (maxN != null && n > maxN) {
             return Optional.of(name + " must be less than or equal to " + maxN);

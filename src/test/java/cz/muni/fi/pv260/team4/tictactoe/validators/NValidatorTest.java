@@ -16,7 +16,7 @@ class NValidatorTest {
     @Test
     void shouldAllowZeroN() {
         NValidator validator = new NValidator(10, "");
-        assertTrue(validator.validate(0).isEmpty());
+        assertTrue(validator.validate(0).isPresent());
     }
 
     @Test
