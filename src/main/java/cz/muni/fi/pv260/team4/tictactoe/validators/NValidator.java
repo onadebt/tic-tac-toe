@@ -6,7 +6,7 @@ public final class NValidator implements InputValidator<Integer> {
     private final Integer maxN;
 
     /**
-     * Validates if the potential move is within the bounds of the board's rows.
+     * Validates if N is valid and bigger than 0 and less than potential max.
      *
      * @param maximumNValue optional max value of N, null if unset
      */
