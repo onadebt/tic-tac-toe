@@ -7,7 +7,9 @@ import cz.muni.fi.pv260.team4.tictactoe.iterator.DescendingDiagonalBoardIterator
 import cz.muni.fi.pv260.team4.tictactoe.iterator.HorizontalBoardIterator;
 import cz.muni.fi.pv260.team4.tictactoe.iterator.VerticalBoardIterator;
 
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 public interface Board {
 
@@ -66,6 +68,25 @@ public interface Board {
      * @return a new {@code Board} instance that is a copy of the current board
      */
     Board createCopy();
+
+    /**
+     * Retrieves a list of all filled cells on the board.
+     *
+     * @return a list of {@link BoardCell} objects representing filled cells
+     */
+    default List<BoardCell> getFilledCells() {
+        var setPositions = new ArrayList<BoardCell>();
+
+        for (int row = 0; row < getMatchConfiguration().getBoardHeight(); row++) {
+            for (int column = 0; column < getMatchConfiguration().getBoardWidth(); column++) {
+                if (!isCellEmpty(row, column)) {
+                    setPositions.add(new BoardCell(row, column, getCell(row, column)));
+                }
+            }
+        }
+
+        return setPositions;
+    }
 
     /**
      * Creates a horizontal iterator that traverses a specific row from left to right.
@@ -129,4 +150,5 @@ public interface Board {
      * @return the {@link MatchConfiguration} used by this board.
      */
     MatchConfiguration getMatchConfiguration();
+
 }
