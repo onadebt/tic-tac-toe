@@ -3,7 +3,8 @@ package cz.muni.fi.pv260.team4.tictactoe.validators;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class RollbackValidatorTest {
     private static final int MOVE_COUNT = 11;
@@ -23,7 +24,7 @@ class RollbackValidatorTest {
 
     @Test
     void shouldAllowValidMoveCount() {
-        for(int moveCount = 1; moveCount <= MAX_ALLOWED; moveCount++) {
+        for (int moveCount = 1; moveCount <= MAX_ALLOWED; moveCount++) {
             assertFalse(validator.validate(moveCount).isPresent());
         }
     }
@@ -32,5 +33,4 @@ class RollbackValidatorTest {
     void shouldRejectTooHighMoveCount() {
         assertTrue(validator.validate(MAX_ALLOWED + 1).isPresent());
     }
-
 }

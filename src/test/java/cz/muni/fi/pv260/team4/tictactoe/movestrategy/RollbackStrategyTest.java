@@ -13,7 +13,10 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Stack;
 
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class RollbackStrategyTest {
@@ -53,5 +56,4 @@ class RollbackStrategyTest {
         // Assert
         verify(moveHistory, times(3)).pop(); // 2 + 1 = 3
     }
-
 }
