@@ -1,5 +1,6 @@
 package cz.muni.fi.pv260.team4.tictactoe.evaluator;
 
+import cz.muni.fi.pv260.team4.tictactoe.GameState;
 import cz.muni.fi.pv260.team4.tictactoe.board.Board;
 import cz.muni.fi.pv260.team4.tictactoe.entity.MatchConfiguration;
 import lombok.AllArgsConstructor;
@@ -13,7 +14,7 @@ import java.util.Optional;
 @AllArgsConstructor
 public final class WinningPositionEvaluator {
 
-    private Board board;
+    private GameState gameState;
     private MatchConfiguration matchConfiguration;
 
     /**
@@ -55,6 +56,8 @@ public final class WinningPositionEvaluator {
 
     @NotNull
     private Collection<Iterator<Character>> createBoardIterators() {
+        final Board board = gameState.getCurrentBoard();
+
         Collection<Iterator<Character>> iterators = new ArrayList<>();
 
         // First construct all possible iterators for the Board
@@ -77,7 +80,7 @@ public final class WinningPositionEvaluator {
         while (characterIterator.hasNext()) {
             Character character = characterIterator.next();
 
-            if (character.equals(board.getElementSupplier().getEmptyElement())) {
+            if (character.equals(gameState.getCurrentBoard().getElementSupplier().getEmptyElement())) {
                 currentSequence = Optional.empty();
                 currentSequenceLength = 0;
                 continue;

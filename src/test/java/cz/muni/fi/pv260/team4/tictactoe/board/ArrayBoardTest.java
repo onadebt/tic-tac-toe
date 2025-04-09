@@ -86,9 +86,9 @@ class ArrayBoardTest {
 
         for (int attempt = 0; attempt < attempts; attempt++) {
             // Generate random row, column, and player
-            int row = random.nextInt((int) matchConfiguration.getBoardHeight());
-            int col = random.nextInt((int) matchConfiguration.getBoardWidth());
-            int playerNum = random.nextInt((int) matchConfiguration.getPlayerCount());
+            int row = random.nextInt(matchConfiguration.getBoardHeight());
+            int col = random.nextInt(matchConfiguration.getBoardWidth());
+            int playerNum = random.nextInt(matchConfiguration.getPlayerCount());
 
             // Get the player's element and insert into the board
             Character player = elementSupplier.getElement(playerNum);
