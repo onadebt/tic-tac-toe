@@ -1,5 +1,6 @@
 package cz.muni.fi.pv260.team4.tictactoe.movestrategy;
 
+import cz.muni.fi.pv260.team4.tictactoe.GameState;
 import cz.muni.fi.pv260.team4.tictactoe.board.Board;
 import cz.muni.fi.pv260.team4.tictactoe.board.BoardCell;
 import cz.muni.fi.pv260.team4.tictactoe.element.ElementSupplier;
@@ -19,9 +20,10 @@ public final class SwapNMoveStrategy implements MoveStrategy<Integer> {
 
     @Override
     public void executeMove(
-            final Board board,
+            final GameState gameState,
             final Character player
     ) {
+        var board = gameState.getCurrentBoard();
         var setPositions = board.getFilledCells();
 
         var n = askN(setPositions.size());

@@ -1,6 +1,6 @@
 package cz.muni.fi.pv260.team4.tictactoe.phase;
 
-import cz.muni.fi.pv260.team4.tictactoe.board.Board;
+import cz.muni.fi.pv260.team4.tictactoe.GameState;
 import cz.muni.fi.pv260.team4.tictactoe.element.ElementSupplier;
 import cz.muni.fi.pv260.team4.tictactoe.entity.MatchConfiguration;
 import cz.muni.fi.pv260.team4.tictactoe.evaluator.WinningPositionEvaluator;
@@ -17,7 +17,7 @@ import java.util.List;
 public final class MatchPhase implements GamePhase {
     private final IOProvider ioProvider;
     private final MatchConfiguration matchConfiguration;
-    private final Board board;
+    private final GameState gameState;
     private final StrategyFactory strategyFactory;
     private final BoardDisplay boardDisplay;
     private final ElementSupplier elementSupplier;
@@ -28,14 +28,15 @@ public final class MatchPhase implements GamePhase {
     @Override
     public GamePhase execute() {
         while (!isGameOver()) {
+            gameState.saveState();
             ioProvider.writeString("Player " + (currentPlayerIndex + 1) + " turn");
             ioProvider.newline();
             MoveStrategy<?> moveStrategy = selectStrategy();
-            boardDisplay.displayBoard(board);
+            boardDisplay.displayBoard(gameState.getCurrentBoard());
             executePlayerTurn(moveStrategy);
             advancePlayer();
         }
-        return null;
+        return new EndPhase(ioProvider, evaluator);
     }
 
     private MoveStrategy<?> selectStrategy() {
@@ -52,9 +53,8 @@ public final class MatchPhase implements GamePhase {
     }
 
     private void executePlayerTurn(final MoveStrategy<?> moveStrategy) {
-        // todo saving board state for memento pattern
-        moveStrategy.executeMove(board, getCurrentPlayer());
-        boardDisplay.displayBoard(board);
+        moveStrategy.executeMove(gameState, getCurrentPlayer());
+        boardDisplay.displayBoard(gameState.getCurrentBoard());
     }
 
     private void advancePlayer() {

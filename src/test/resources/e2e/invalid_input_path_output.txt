@@ -6,7 +6,8 @@ Player 1 turn
 
 ? Choose strategy:
 1 - Single Move
-2 - Swap N Move
+2 - Rollback
+3 - Swap N Move
 :    1   2   3
 1    |   |  
   ---+---+---
@@ -25,7 +26,8 @@ Player 2 turn
 
 ? Choose strategy:
 1 - Single Move
-2 - Swap N Move
+2 - Rollback
+3 - Swap N Move
 :    1   2   3
 1  a |   |  
   ---+---+---
@@ -44,7 +46,8 @@ Player 1 turn
 
 ? Choose strategy:
 1 - Single Move
-2 - Swap N Move
+2 - Rollback
+3 - Swap N Move
 :    1   2   3
 1  a | b |  
   ---+---+---
@@ -63,7 +66,8 @@ Player 2 turn
 
 ? Choose strategy:
 1 - Single Move
-2 - Swap N Move
+2 - Rollback
+3 - Swap N Move
 :    1   2   3
 1  a | b |  
   ---+---+---
@@ -82,7 +86,8 @@ Player 1 turn
 
 ? Choose strategy:
 1 - Single Move
-2 - Swap N Move
+2 - Rollback
+3 - Swap N Move
 :    1   2   3
 1  a | b |  
   ---+---+---
@@ -97,7 +102,6 @@ Player 1 turn
   ---+---+---
 3  a |   | b
 
-Game over!
-
 ================================
 
+Game over! WINNER: a

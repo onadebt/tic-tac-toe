@@ -1,5 +1,6 @@
 package cz.muni.fi.pv260.team4.tictactoe.movestrategy;
 
+import cz.muni.fi.pv260.team4.tictactoe.GameState;
 import cz.muni.fi.pv260.team4.tictactoe.board.Board;
 import cz.muni.fi.pv260.team4.tictactoe.board.BoardCell;
 import cz.muni.fi.pv260.team4.tictactoe.element.ElementSupplier;
@@ -45,6 +46,9 @@ class SwapNMoveStrategyTest {
     private Board board;
 
     @Mock
+    private GameState gameState;
+
+    @Mock
     private MatchConfiguration matchConfiguration;
 
     @Mock
@@ -60,6 +64,8 @@ class SwapNMoveStrategyTest {
 
         when(elementSupplier.getElement(0)).thenReturn('X');
         when(elementSupplier.getElement(1)).thenReturn('O');
+
+        when(gameState.getCurrentBoard()).thenReturn(board);
     }
 
     @Test
@@ -74,7 +80,7 @@ class SwapNMoveStrategyTest {
         when(random.ints(eq(0), eq(1))).thenReturn(IntStream.of(0));
         when(random.ints(eq(0), eq(2))).thenReturn(IntStream.of(1));
 
-        swapNMoveStrategy.executeMove(board, 'X');
+        swapNMoveStrategy.executeMove(gameState, 'X');
 
         verify(board).setCell(0, 0, 'O');
     }
@@ -96,7 +102,7 @@ class SwapNMoveStrategyTest {
                 .thenReturn(IntStream.of(1))
                 .thenReturn(IntStream.of(0));
 
-        swapNMoveStrategy.executeMove(board, 'X');
+        swapNMoveStrategy.executeMove(gameState, 'X');
 
         // For cell1 ('X'), swap to 'O'
         verify(board).setCell(0, 0, 'O');
@@ -109,7 +115,7 @@ class SwapNMoveStrategyTest {
         when(board.getFilledCells()).thenReturn(List.of(cell1));
         when(ioProvider.readInt(anyString(), any(NValidator.class))).thenReturn(0);
 
-        swapNMoveStrategy.executeMove(board, 'X');
+        swapNMoveStrategy.executeMove(gameState, 'X');
 
         verify(board, never()).setCell(anyInt(), anyInt(), anyChar());
     }

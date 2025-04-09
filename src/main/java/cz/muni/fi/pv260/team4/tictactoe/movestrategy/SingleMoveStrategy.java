@@ -1,5 +1,6 @@
 package cz.muni.fi.pv260.team4.tictactoe.movestrategy;
 
+import cz.muni.fi.pv260.team4.tictactoe.GameState;
 import cz.muni.fi.pv260.team4.tictactoe.board.Board;
 import cz.muni.fi.pv260.team4.tictactoe.entity.MatchConfiguration;
 import cz.muni.fi.pv260.team4.tictactoe.interfaces.IOProvider;
@@ -16,11 +17,12 @@ public final class SingleMoveStrategy implements MoveStrategy<Pair<Integer, Inte
     /**
      * Execute the move.
      *
-     * @param board  Board
+     * @param gameState  Game state
      * @param player Character
      */
     @Override
-    public void executeMove(final Board board, final Character player) {
+    public void executeMove(final GameState gameState, final Character player) {
+        var board = gameState.getCurrentBoard();
         var position = askRowColumn(board);
 
         board.setCell(position.getFirst() - 1, position.getSecond() - 1, player);

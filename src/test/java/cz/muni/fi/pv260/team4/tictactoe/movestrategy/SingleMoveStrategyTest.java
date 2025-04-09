@@ -1,8 +1,10 @@
 package cz.muni.fi.pv260.team4.tictactoe.movestrategy;
 
+import cz.muni.fi.pv260.team4.tictactoe.GameState;
 import cz.muni.fi.pv260.team4.tictactoe.board.Board;
 import cz.muni.fi.pv260.team4.tictactoe.entity.MatchConfiguration;
 import cz.muni.fi.pv260.team4.tictactoe.interfaces.IOProvider;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -37,13 +39,21 @@ class SingleMoveStrategyTest {
     @Mock
     private Board board;
 
+    @Mock
+    private GameState gameState;
+
+    @BeforeEach
+    void setUp() {
+        when(gameState.getCurrentBoard()).thenReturn(board);
+    }
+
     @Test
     void testExecuteMove() {
         when(ioProvider.readInt(anyString(), any())).thenReturn(1, 1);
         when(board.isCellEmpty(0, 0)).thenReturn(true);
         Mockito.doNothing().when(board).setCell(anyInt(), anyInt(), anyChar());
 
-        singleMoveStrategy.executeMove(board, 'X');
+        singleMoveStrategy.executeMove(gameState, 'X');
 
         verify(ioProvider, times(2)).readInt(anyString(), any());
         verify(board).setCell(0, 0, 'X');
@@ -55,7 +65,7 @@ class SingleMoveStrategyTest {
         doReturn(false).when(board).isCellEmpty(0, 0);
         doReturn(true).when(board).isCellEmpty(1, 1);
 
-        singleMoveStrategy.executeMove(board, 'X');
+        singleMoveStrategy.executeMove(gameState, 'X');
 
         verify(ioProvider, times(4)).readInt(anyString(), any());
         verify(board, never()).setCell(0, 0, 'X');

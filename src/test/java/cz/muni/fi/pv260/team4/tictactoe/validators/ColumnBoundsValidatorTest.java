@@ -12,7 +12,7 @@ class ColumnBoundsValidatorTest {
     private static final int MAX_COLUMNS = 3;
 
     @InjectMocks
-    private ColumnBoundsValidator validator =  new ColumnBoundsValidator(MAX_COLUMNS);
+    private final ColumnBoundsValidator validator =  new ColumnBoundsValidator(MAX_COLUMNS);
 
     @Test
     void shouldAllowValidColumn() {

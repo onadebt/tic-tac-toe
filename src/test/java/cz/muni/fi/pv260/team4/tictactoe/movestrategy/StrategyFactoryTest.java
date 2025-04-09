@@ -1,5 +1,6 @@
 package cz.muni.fi.pv260.team4.tictactoe.movestrategy;
 
+import cz.muni.fi.pv260.team4.tictactoe.GameState;
 import cz.muni.fi.pv260.team4.tictactoe.element.ElementSupplier;
 import cz.muni.fi.pv260.team4.tictactoe.entity.MatchConfiguration;
 import cz.muni.fi.pv260.team4.tictactoe.interfaces.IOProvider;
@@ -18,12 +19,15 @@ class StrategyFactoryTest {
     @Mock
     private MatchConfiguration configuration;
 
+    @Mock
+    private GameState gameState;
+
     @BeforeEach
     void setUp() {
         IOProvider ioProvider = mock(IOProvider.class);
         Random random = mock(Random.class);
         ElementSupplier elementSupplier = mock(ElementSupplier.class);
-        strategyFactory = new StrategyFactory(ioProvider, configuration, random, elementSupplier);
+        strategyFactory = new StrategyFactory(ioProvider, configuration, gameState, random, elementSupplier);
     }
 
     @Test
