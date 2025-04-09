@@ -88,6 +88,11 @@ public final class TerminalIOProvider implements IOProvider {
     }
 
     @Override
+    public void writeError(final String value) {
+        System.err.println(value);
+    }
+
+    @Override
     public void newline() {
         System.out.println();
     }

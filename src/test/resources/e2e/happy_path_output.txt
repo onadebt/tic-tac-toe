@@ -6,6 +6,7 @@ Player 1 turn
 
 ? Choose strategy:
 1 - Single Move
+2 - Swap N Move
 :    1   2   3
 1    |   |  
   ---+---+---
@@ -24,6 +25,7 @@ Player 2 turn
 
 ? Choose strategy:
 1 - Single Move
+2 - Swap N Move
 :    1   2   3
 1  a |   |  
   ---+---+---
@@ -42,6 +44,7 @@ Player 1 turn
 
 ? Choose strategy:
 1 - Single Move
+2 - Swap N Move
 :    1   2   3
 1  a |   |  
   ---+---+---
@@ -60,6 +63,7 @@ Player 2 turn
 
 ? Choose strategy:
 1 - Single Move
+2 - Swap N Move
 :    1   2   3
 1  a | a |  
   ---+---+---
@@ -78,6 +82,7 @@ Player 1 turn
 
 ? Choose strategy:
 1 - Single Move
+2 - Swap N Move
 :    1   2   3
 1  a | a |  
   ---+---+---
