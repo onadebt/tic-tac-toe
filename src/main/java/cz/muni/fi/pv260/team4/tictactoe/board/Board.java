@@ -89,6 +89,25 @@ public interface Board {
     }
 
     /**
+     * Retrieves a list of all empty cells on the board.
+     *
+     * @return a list of {@link BoardCell} objects representing empty cells
+     */
+    default List<BoardCell> getEmptyCells() {
+        var freePositions = new ArrayList<BoardCell>();
+
+        for (int row = 0; row < getMatchConfiguration().getBoardHeight(); row++) {
+            for (int column = 0; column < getMatchConfiguration().getBoardWidth(); column++) {
+                if (isCellEmpty(row, column)) {
+                    freePositions.add(new BoardCell(row, column, getCell(row, column)));
+                }
+            }
+        }
+
+        return freePositions;
+    }
+
+    /**
      * Creates a horizontal iterator that traverses a specific row from left to right.
      * <p>
      * The iterator moves through all columns in the given row, returning each cell in sequence.
