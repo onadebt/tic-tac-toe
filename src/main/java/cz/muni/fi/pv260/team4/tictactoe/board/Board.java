@@ -151,7 +151,13 @@ public interface Board {
      */
     MatchConfiguration getMatchConfiguration();
 
+    /**
+     * Check if all cells are occupied.
+     *
+     * @return true if the board is full, false otherwise
+     */
     default boolean isFull() {
-        return getFilledCells().size() == getMatchConfiguration().getBoardWidth() * getMatchConfiguration().getBoardHeight();
+        return getFilledCells().size()
+                == getMatchConfiguration().getBoardWidth() * getMatchConfiguration().getBoardHeight();
     }
 }
