@@ -171,4 +171,24 @@ class ArrayBoardTest {
         assertThrows(BoardPositionOutOfBoundsException.class, () -> board.setCell(7, 5, 'X'));
         assertThrows(BoardPositionOutOfBoundsException.class, () -> board.setCell(8, 5, 'O'));
     }
+
+    @Test
+    public void shouldCorrectlyDetermineIfBoardIsFull() {
+        MatchConfiguration matchConfiguration = new MatchConfiguration(2, 2, 2, 2);
+        ElementSupplier elementSupplier = getDummyElementSupplier();
+        Character[][] grid = ArrayBoard.getEmptyGrid(matchConfiguration, elementSupplier);
+        Board originalBoard = new ArrayBoard(elementSupplier, matchConfiguration, grid);
+
+        assertFalse(originalBoard.isFull());
+
+        originalBoard.setCell(0, 0, 'X');
+        originalBoard.setCell(0, 1, 'O');
+
+        assertFalse(originalBoard.isFull());
+
+        originalBoard.setCell(1, 0, 'X');
+        originalBoard.setCell(1, 1, 'O');
+
+        assertTrue(originalBoard.isFull());
+    }
 }
