@@ -95,7 +95,7 @@ public interface Board {
      * </p>
      *
      * @param matchConfiguration the configuration defining board dimensions and winning conditions
-     * @param row the row index to iterate over (zero-based)
+     * @param row                the row index to iterate over (zero-based)
      * @return an {@link Iterator} that iterates horizontally across the specified row
      */
     default Iterator<Character> getHorizontalIterator(MatchConfiguration matchConfiguration, int row) {
@@ -109,7 +109,7 @@ public interface Board {
      * </p>
      *
      * @param matchConfiguration the configuration defining board dimensions and winning conditions
-     * @param column the column index to iterate over (zero-based)
+     * @param column             the column index to iterate over (zero-based)
      * @return an {@link Iterator} that iterates vertically down the specified column
      */
     default Iterator<Character> getVerticalIterator(MatchConfiguration matchConfiguration, int column) {
@@ -123,7 +123,7 @@ public interface Board {
      * </p>
      *
      * @param matchConfiguration the configuration defining board dimensions and winning conditions
-     * @param row the row index where the diagonal traversal starts (zero-based)
+     * @param row                the row index where the diagonal traversal starts (zero-based)
      * @return an {@link Iterator} that iterates diagonally downward
      */
     default Iterator<Character> getDescendingDiagonalIterator(MatchConfiguration matchConfiguration, int row) {
@@ -137,7 +137,7 @@ public interface Board {
      * </p>
      *
      * @param matchConfiguration the configuration defining board dimensions and winning conditions
-     * @param row the row index where the diagonal traversal starts (zero-based)
+     * @param row                the row index where the diagonal traversal starts (zero-based)
      * @return an {@link Iterator} that iterates diagonally upward
      */
     default Iterator<Character> getAscendingDiagonalIterator(MatchConfiguration matchConfiguration, int row) {
@@ -151,4 +151,7 @@ public interface Board {
      */
     MatchConfiguration getMatchConfiguration();
 
+    default boolean isFull() {
+        return getFilledCells().size() == getMatchConfiguration().getBoardWidth() * getMatchConfiguration().getBoardHeight();
+    }
 }

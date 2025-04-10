@@ -62,7 +62,7 @@ public final class MatchPhase implements GamePhase {
     }
 
     private boolean isGameOver() {
-        return evaluator.getWinner().isPresent();
+        return evaluator.getWinner().isPresent() || gameState.getCurrentBoard().isFull();
     }
 
     private Character getCurrentPlayer() {
