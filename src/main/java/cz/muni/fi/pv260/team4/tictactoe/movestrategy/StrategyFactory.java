@@ -31,6 +31,7 @@ public final class StrategyFactory {
         moveStrategyList.add(new SingleMoveStrategy(ioProvider, matchConfiguration));
         moveStrategyList.add(new RollbackStrategy(ioProvider, gameState));
         moveStrategyList.add(new SwapNMoveStrategy(ioProvider, random, elementSupplier));
+        moveStrategyList.add(new RemoveNMoveStrategy(ioProvider, random));
     }
 
     /**
