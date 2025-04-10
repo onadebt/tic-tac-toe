@@ -8,6 +8,7 @@ Player 1 turn
 1 - Single Move
 2 - Rollback
 3 - Swap N Move
+4 - Remove N
 :    1   2   3
 1    |   |  
   ---+---+---
@@ -28,6 +29,7 @@ Player 2 turn
 1 - Single Move
 2 - Rollback
 3 - Swap N Move
+4 - Remove N
 :    1   2   3
 1  a |   |  
   ---+---+---
@@ -48,6 +50,7 @@ Player 1 turn
 1 - Single Move
 2 - Rollback
 3 - Swap N Move
+4 - Remove N
 :    1   2   3
 1  a |   |  
   ---+---+---
@@ -68,6 +71,7 @@ Player 2 turn
 1 - Single Move
 2 - Rollback
 3 - Swap N Move
+4 - Remove N
 :    1   2   3
 1  a | a |  
   ---+---+---
@@ -88,6 +92,7 @@ Player 1 turn
 1 - Single Move
 2 - Rollback
 3 - Swap N Move
+4 - Remove N
 :    1   2   3
 1  a | a |  
   ---+---+---

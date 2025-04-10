@@ -79,5 +79,4 @@ public final class ArrayBoard implements Board {
 
         return new ArrayBoard(elementSupplier, matchConfiguration, gridCopy);
     }
-
 }
