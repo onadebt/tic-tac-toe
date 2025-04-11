@@ -11,11 +11,4 @@ public interface MoveStrategy<T> {
      * @param gameState state of the game
      */
     void executeMove(GameState gameState, Character player);
-
-    /**
-     * Returns MoveParameterGatherer, which contains all needed parameters for the specific move strategy.
-     *
-     * @return MoveParameterGatherer
-     */
-    MoveParameterGatherer<T> getMoveParameterGatherer();
 }

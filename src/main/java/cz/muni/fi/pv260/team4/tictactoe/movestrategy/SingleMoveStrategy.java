@@ -54,16 +54,6 @@ public final class SingleMoveStrategy implements MoveStrategy<Pair<Integer, Inte
         );
     }
 
-    /**
-     * Get the move parameter gatherer.
-     *
-     * @return MoveParameterGatherer
-     */
-    @Override
-    public MoveParameterGatherer<Pair<Integer, Integer>> getMoveParameterGatherer() {
-        return null;
-    }
-
     @Override
     public String toString() {
         return "Single Move";

@@ -32,11 +32,6 @@ public final class SwapNMoveStrategy implements MoveStrategy<Integer> {
     }
 
     @Override
-    public MoveParameterGatherer<Integer> getMoveParameterGatherer() {
-        return null;
-    }
-
-    @Override
     public String toString() {
         return "Swap N Move";
     }

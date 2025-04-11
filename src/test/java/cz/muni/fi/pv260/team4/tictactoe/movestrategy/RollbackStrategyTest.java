@@ -13,7 +13,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Stack;
 
-import static org.mockito.Mockito.doReturn;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -26,9 +27,6 @@ class RollbackStrategyTest {
 
     @Mock
     private GameState gameState;
-
-    @Mock
-    private MoveParameterGatherer<Integer> moveParameterGatherer;
 
     @Spy
     @InjectMocks
@@ -45,10 +43,7 @@ class RollbackStrategyTest {
     @Test
     void testPopCalledCorrectNumberOfTimes() {
         // Arrange
-        when(moveParameterGatherer.gatherMoveParameters()).thenReturn(2); // Will result in 3 pop() calls
-
-        // Override the gatherer using Spy
-        doReturn(moveParameterGatherer).when(rollbackStrategy).getMoveParameterGatherer();
+        when(ioProvider.readInt(anyString(), any())).thenReturn(2);
 
         // Act
         rollbackStrategy.executeMove(gameState, 'X');

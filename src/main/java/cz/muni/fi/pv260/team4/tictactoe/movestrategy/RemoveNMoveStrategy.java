@@ -24,11 +24,6 @@ public final class RemoveNMoveStrategy implements MoveStrategy<Integer> {
     }
 
     @Override
-    public MoveParameterGatherer<Integer> getMoveParameterGatherer() {
-        return null;
-    }
-
-    @Override
     public String toString() {
         return "Remove N";
     }
