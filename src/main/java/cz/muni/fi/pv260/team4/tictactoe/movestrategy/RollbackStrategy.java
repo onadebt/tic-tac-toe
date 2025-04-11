@@ -2,6 +2,7 @@ package cz.muni.fi.pv260.team4.tictactoe.movestrategy;
 
 import cz.muni.fi.pv260.team4.tictactoe.GameState;
 import cz.muni.fi.pv260.team4.tictactoe.interfaces.IOProvider;
+import cz.muni.fi.pv260.team4.tictactoe.validators.RollbackValidator;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
@@ -16,7 +17,7 @@ public final class RollbackStrategy implements MoveStrategy<Integer> {
      */
     @Override
     public void executeMove(final GameState ignored, final Character player) {
-        int rollbackAmount = getMoveParameterGatherer().gatherMoveParameters();
+        int rollbackAmount = askRollbackAmount();
 
         // +1 because we also have to revert the current rollback move
         for (int i = 0; i < rollbackAmount + 1; i++) {
@@ -24,14 +25,10 @@ public final class RollbackStrategy implements MoveStrategy<Integer> {
         }
     }
 
-    /**
-     * Get the move parameter gatherer.
-     *
-     * @return MoveParameterGatherer
-     */
-    @Override
-    public MoveParameterGatherer<Integer> getMoveParameterGatherer() {
-        return new MoveCountGatherer(ioProvider, gameState);
+    private int askRollbackAmount() {
+        return this.ioProvider.readInt(
+                "Enter number of moves to rollback: ", new RollbackValidator(gameState.getMoveHistory().size())
+        );
     }
 
     @Override
