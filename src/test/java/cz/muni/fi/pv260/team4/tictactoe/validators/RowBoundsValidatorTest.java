@@ -12,7 +12,7 @@ class RowBoundsValidatorTest {
     private static final int MAX_ROWS = 3;
 
     @InjectMocks
-    private RowBoundsValidator validator = new RowBoundsValidator(MAX_ROWS);
+    private final RowBoundsValidator validator = new RowBoundsValidator(MAX_ROWS);
 
     @Test
     void shouldAllowValidRow() {

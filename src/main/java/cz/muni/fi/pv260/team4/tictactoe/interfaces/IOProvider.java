@@ -44,6 +44,12 @@ public interface IOProvider {
      */
     void writeString(String value);
 
+    /**
+     * Display error message to a user.
+     *
+     * @param value text to display
+     */
+    void writeError(String value);
 
     /**
      * Prints a new line. Created to make the provider platform independent.

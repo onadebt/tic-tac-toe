@@ -10,6 +10,8 @@ import cz.muni.fi.pv260.team4.tictactoe.phase.GamePhase;
 import cz.muni.fi.pv260.team4.tictactoe.phase.GamePhaseFactory;
 import cz.muni.fi.pv260.team4.tictactoe.phase.MatchConfigurationGenerator;
 
+import java.security.SecureRandom;
+
 public final class Main {
     private Main() {
     }
@@ -36,28 +38,25 @@ public final class Main {
         while (gamePhase != null) {
             gamePhase = gamePhase.execute();
         }
-
-        ioProvider.writeString("Game over!");
-        ioProvider.newline();
-        ioProvider.writeString("================================");
-        ioProvider.newline();
     }
 
     private static GamePhase createInitialGamePhase(final TerminalIOProvider ioProvider) {
+        var random = new SecureRandom();
         var elementSupplier = new AlphabeticElementSupplier();
         var boardFactory = new BoardFactory();
         var boardDisplay = new TerminalBoardDisplay(ioProvider);
         var configuration = new MatchConfigurationGenerator(ioProvider, elementSupplier).createMatchConfiguration();
-        var strategyFactory = new StrategyFactory(ioProvider, configuration);
         var board = boardFactory.createEmptyBoard(configuration, elementSupplier);
-        var winningPositionEvaluator = new WinningPositionEvaluator(board, configuration);
+        var gameState = new GameState(board);
+        var strategyFactory = new StrategyFactory(ioProvider, configuration, gameState, random, elementSupplier);
+        var winningPositionEvaluator = new WinningPositionEvaluator(gameState, configuration);
 
         var gamePhaseFactory = new GamePhaseFactory(
                 ioProvider,
                 elementSupplier,
                 boardDisplay,
                 configuration,
-                board,
+                gameState,
                 strategyFactory,
                 winningPositionEvaluator);
 

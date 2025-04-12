@@ -1,5 +1,6 @@
 package cz.muni.fi.pv260.team4.tictactoe.evaluator;
 
+import cz.muni.fi.pv260.team4.tictactoe.GameState;
 import cz.muni.fi.pv260.team4.tictactoe.element.ElementSupplier;
 import cz.muni.fi.pv260.team4.tictactoe.iterator.IteratorTestConfig;
 import org.junit.jupiter.api.BeforeEach;
@@ -26,7 +27,7 @@ class WinningPositionEvaluatorTest {
 
     private Optional<Character> evaluateBoard(final char[][] stub) {
         return new WinningPositionEvaluator(
-                new TestBoard(stub, elementSupplier),
+                new GameState(new TestBoard(stub, elementSupplier)),
                 IteratorTestConfig.DEFAULT_MATCH_CONFIG)
                 .getWinner();
     }

@@ -7,7 +7,9 @@ import cz.muni.fi.pv260.team4.tictactoe.iterator.DescendingDiagonalBoardIterator
 import cz.muni.fi.pv260.team4.tictactoe.iterator.HorizontalBoardIterator;
 import cz.muni.fi.pv260.team4.tictactoe.iterator.VerticalBoardIterator;
 
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 public interface Board {
 
@@ -68,13 +70,51 @@ public interface Board {
     Board createCopy();
 
     /**
+     * Retrieves a list of all filled cells on the board.
+     *
+     * @return a list of {@link BoardCell} objects representing filled cells
+     */
+    default List<BoardCell> getFilledCells() {
+        var setPositions = new ArrayList<BoardCell>();
+
+        for (int row = 0; row < getMatchConfiguration().getBoardHeight(); row++) {
+            for (int column = 0; column < getMatchConfiguration().getBoardWidth(); column++) {
+                if (!isCellEmpty(row, column)) {
+                    setPositions.add(new BoardCell(row, column, getCell(row, column)));
+                }
+            }
+        }
+
+        return setPositions;
+    }
+
+    /**
+     * Retrieves a list of all empty cells on the board.
+     *
+     * @return a list of {@link BoardCell} objects representing empty cells
+     */
+    default List<BoardCell> getEmptyCells() {
+        var freePositions = new ArrayList<BoardCell>();
+
+        for (int row = 0; row < getMatchConfiguration().getBoardHeight(); row++) {
+            for (int column = 0; column < getMatchConfiguration().getBoardWidth(); column++) {
+                if (isCellEmpty(row, column)) {
+                    freePositions.add(new BoardCell(row, column, getCell(row, column)));
+                }
+            }
+        }
+
+        return freePositions;
+    }
+
+    /**
      * Creates a horizontal iterator that traverses a specific row from left to right.
      * <p>
      * The iterator moves through all columns in the given row, returning each cell in sequence.
      * </p>
      *
      * @param matchConfiguration the configuration defining board dimensions and winning conditions
-     * @param row the row index to iterate over (zero-based)
+     * @param row                the row index to iterate over (zero-based)
      * @return an {@link Iterator} that iterates horizontally across the specified row
      */
     default Iterator<Character> getHorizontalIterator(MatchConfiguration matchConfiguration, int row) {
@@ -88,7 +128,7 @@ public interface Board {
      * </p>
      *
      * @param matchConfiguration the configuration defining board dimensions and winning conditions
-     * @param column the column index to iterate over (zero-based)
+     * @param column             the column index to iterate over (zero-based)
      * @return an {@link Iterator} that iterates vertically down the specified column
      */
     default Iterator<Character> getVerticalIterator(MatchConfiguration matchConfiguration, int column) {
@@ -102,7 +142,7 @@ public interface Board {
      * </p>
      *
      * @param matchConfiguration the configuration defining board dimensions and winning conditions
-     * @param row the row index where the diagonal traversal starts (zero-based)
+     * @param row                the row index where the diagonal traversal starts (zero-based)
      * @return an {@link Iterator} that iterates diagonally downward
      */
     default Iterator<Character> getDescendingDiagonalIterator(MatchConfiguration matchConfiguration, int row) {
@@ -116,7 +156,7 @@ public interface Board {
      * </p>
      *
      * @param matchConfiguration the configuration defining board dimensions and winning conditions
-     * @param row the row index where the diagonal traversal starts (zero-based)
+     * @param row                the row index where the diagonal traversal starts (zero-based)
      * @return an {@link Iterator} that iterates diagonally upward
      */
     default Iterator<Character> getAscendingDiagonalIterator(MatchConfiguration matchConfiguration, int row) {
@@ -129,4 +169,14 @@ public interface Board {
      * @return the {@link MatchConfiguration} used by this board.
      */
     MatchConfiguration getMatchConfiguration();
+
+    /**
+     * Check if all cells are occupied.
+     *
+     * @return true if the board is full, false otherwise
+     */
+    default boolean isFull() {
+        return getFilledCells().size()
+                == getMatchConfiguration().getBoardWidth() * getMatchConfiguration().getBoardHeight();
+    }
 }
