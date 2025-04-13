@@ -1,4 +1,4 @@
-# Assignment 1 - Tic-Tac-Toe
+# Tic-Tac-Toe
 
 This application implements Tic-Tac-Toe as a hotseat multiplayer game for minimum of 2 players up to 26 players, with variable board width, height, and winning sequence length (minimum for all is 3). 
 
@@ -48,7 +48,7 @@ To run the provided test suite use the following command:
 ```
 ## Team members (Team 4)
 
-- Filip Fabka (524835)
-- Ivan Yatskiv (567817)
-- Jakub Španger (524798)
-- Vít Falta (524987)
+- Filip Fabka
+- Ivan Yatskiv
+- Jakub Španger
+- Vít Falta
