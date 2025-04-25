@@ -30,7 +30,7 @@ public final class RemoveNMoveStrategy implements MoveStrategy<Integer> {
 
     private int askN(final int maxN) {
         return ioProvider.readInt(
-                "Enter how many to remove: ", new NValidator(maxN, "Number of removals")
+                "Enter how many to remove", new NValidator(maxN, "Number of removals")
         );
     }
 

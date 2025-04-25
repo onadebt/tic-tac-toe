@@ -38,7 +38,7 @@ public final class SwapNMoveStrategy implements MoveStrategy<Integer> {
 
     private int askN(final int maxN) {
         return this.ioProvider.readInt(
-                "Enter how many to swap: ", new NValidator(maxN, "Number of swaps")
+                "Enter how many to swap", new NValidator(maxN, "Number of swaps")
         );
     }
 

@@ -28,9 +28,10 @@ public final class Main {
     private static void runGame() {
         var ioProvider = new TerminalIOProvider();
 
+        ioProvider.writeString("Welcome to Tic Tac Toe!");
+
         GamePhase gamePhase = createInitialGamePhase(ioProvider);
 
-        ioProvider.writeString("Welcome to Tic Tac Toe!");
         ioProvider.newline();
         ioProvider.writeString("================================");
         ioProvider.newline();

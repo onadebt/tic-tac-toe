@@ -33,7 +33,7 @@ public final class PlaceNMoveStrategy implements MoveStrategy<Integer> {
 
     private int askN(final int maxN) {
         return ioProvider.readInt(
-                "Enter how many to place: ", new NValidator(maxN, "Number of random symbols to place")
+                "Enter how many to place", new NValidator(maxN, "Number of random symbols to place")
         );
     }
 

@@ -1,5 +1,5 @@
-? How many players [default: 2]: ? Width of the board [default: 3]: ? Height of the board [default: 3]: ? Length of the winning sequence [default: 3]: Welcome to Tic Tac Toe!
-
+Welcome to Tic Tac Toe!
+? How many players [default: 2]: ? Width of the board [default: 3]: ? Height of the board [default: 3]: ? Length of the winning sequence [default: 3]: 
 ================================
 
 Player 1 turn
@@ -17,7 +17,7 @@ Player 1 turn
   ---+---+---
 3    |   |  
 
-? Enter row: : ? Enter column: :    1   2   3
+? Enter row: ? Enter column:    1   2   3
 1  a |   |  
   ---+---+---
 2    |   |  
@@ -39,7 +39,7 @@ Player 2 turn
   ---+---+---
 3    |   |  
 
-? Enter row: : ? Enter column: :    1   2   3
+? Enter row: ? Enter column:    1   2   3
 1  a |   |  
   ---+---+---
 2  b |   |  
@@ -61,7 +61,7 @@ Player 1 turn
   ---+---+---
 3    |   |  
 
-? Enter row: : ? Enter column: :    1   2   3
+? Enter row: ? Enter column:    1   2   3
 1  a | a |  
   ---+---+---
 2  b |   |  
@@ -83,7 +83,7 @@ Player 2 turn
   ---+---+---
 3    |   |  
 
-? Enter row: : ? Enter column: :    1   2   3
+? Enter row: ? Enter column:    1   2   3
 1  a | a |  
   ---+---+---
 2  b |   |  
@@ -105,7 +105,7 @@ Player 1 turn
   ---+---+---
 3  b |   |  
 
-? Enter row: : ? Enter column: :    1   2   3
+? Enter row: ? Enter column:    1   2   3
 1  a | a | a
   ---+---+---
 2  b |   |  
