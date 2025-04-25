@@ -17,7 +17,7 @@ Player 1 turn
   ---+---+---
 3    |   |  
 
-? Enter row: : ? Enter column: :    1   2   3
+? Enter row: ? Enter column:    1   2   3
 1  a |   |  
   ---+---+---
 2    |   |  
@@ -39,7 +39,7 @@ Player 2 turn
   ---+---+---
 3    |   |  
 
-? Enter row: : ? Enter column: : ? Enter row: : ? Enter column: :    1   2   3
+? Enter row: ? Enter column: ? Enter row: ? Enter column:    1   2   3
 1  a | b |  
   ---+---+---
 2    |   |  
@@ -61,7 +61,7 @@ Player 1 turn
   ---+---+---
 3    |   |  
 
-? Enter row: : ? Enter column: :    1   2   3
+? Enter row: ? Enter column:    1   2   3
 1  a | b |  
   ---+---+---
 2  a |   |  
@@ -83,7 +83,7 @@ Player 2 turn
   ---+---+---
 3    |   |  
 
-? Enter row: : ? Enter column: :    1   2   3
+? Enter row: ? Enter column:    1   2   3
 1  a | b |  
   ---+---+---
 2  a |   |  
@@ -105,7 +105,7 @@ Player 1 turn
   ---+---+---
 3    |   | b
 
-? Enter row: : ? Enter column: :    1   2   3
+? Enter row: ? Enter column:    1   2   3
 1  a | b |  
   ---+---+---
 2  a |   |  

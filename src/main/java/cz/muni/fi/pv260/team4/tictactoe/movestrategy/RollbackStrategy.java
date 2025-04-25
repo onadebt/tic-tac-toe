@@ -27,7 +27,7 @@ public final class RollbackStrategy implements MoveStrategy<Integer> {
 
     private int askRollbackAmount() {
         return this.ioProvider.readInt(
-                "Enter number of moves to rollback: ", new RollbackValidator(gameState.getMoveHistory().size())
+                "Enter number of moves to rollback", new RollbackValidator(gameState.getMoveHistory().size())
         );
     }
 

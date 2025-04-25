@@ -44,13 +44,13 @@ public final class SingleMoveStrategy implements MoveStrategy<Pair<Integer, Inte
 
     private int askColumn() {
         return this.ioProvider.readInt(
-                "Enter column: ", new ColumnBoundsValidator(configuration.getBoardWidth())
+                "Enter column", new ColumnBoundsValidator(configuration.getBoardWidth())
         );
     }
 
     private int askRow() {
         return this.ioProvider.readInt(
-                "Enter row: ", new RowBoundsValidator(configuration.getBoardHeight())
+                "Enter row", new RowBoundsValidator(configuration.getBoardHeight())
         );
     }
 
