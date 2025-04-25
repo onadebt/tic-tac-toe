@@ -36,5 +36,4 @@ class StrategyFactoryTest {
         assertInstanceOf(SingleMoveStrategy.class, strategy);
     }
 
-    //todo add test for invalid strategy
 }

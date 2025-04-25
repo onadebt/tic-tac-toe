@@ -19,7 +19,7 @@ public final class EndPhase implements GamePhase {
         ioProvider.newline();
         final StringBuilder sb = new StringBuilder();
         sb.append("Game over! ");
-        if (winner.isEmpty()) { //Refactor this in issue 21 (draw result)
+        if (winner.isEmpty()) {
             sb.append("DRAW");
         } else {
             sb.append(String.format("WINNER: %s", winner.get()));
