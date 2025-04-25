@@ -1,5 +1,5 @@
-? How many players [default: 2]: ? Width of the board [default: 3]: ? Height of the board [default: 3]: ? Length of the winning sequence [default: 3]: Welcome to Tic Tac Toe!
-
+Welcome to Tic Tac Toe!
+? How many players [default: 2]: ? Width of the board [default: 3]: ? Height of the board [default: 3]: ? Length of the winning sequence [default: 3]: 
 ================================
 
 Player 1 turn

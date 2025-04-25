@@ -141,11 +141,11 @@ Below is an example of a game played by two players on a 3x3 board. The first pl
 player uses the symbol 'b'. The winning sequence length is set to 3.
 
 ```
+Welcome to Tic Tac Toe!
 ? How many players [default: 2]: 2
 ? Width of the board [default: 3]: 3
 ? Height of the board [default: 3]: 3
 ? Length of the winning sequence [default: 3]: 3
-Welcome to Tic Tac Toe!
 
 ================================
 
