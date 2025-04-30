@@ -54,10 +54,10 @@ To run the provided test suite use the following command:
 
 ## Team members (Team 4)
 
-- Filip Fabka (524835)
-- Ivan Yatskiv (567817)
-- Jakub Španger (524798)
-- Vít Falta (524987)
+- Filip Fabka
+- Ivan Yatskiv
+- Jakub Španger
+- Vít Falta
 
 ## User Guide – CLI Tic-Tac-Toe
 
